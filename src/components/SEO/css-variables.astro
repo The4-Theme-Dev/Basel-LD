@@ -1,0 +1,40 @@
+---
+import { siteConfig } from "../../config/site";
+
+const cssVars = `
+:root {
+  --bg: ${siteConfig.colorBg};
+  --text: ${siteConfig.colorText};
+  --text-secondary: ${siteConfig.colorTextSecondary};
+  --primary-color: ${siteConfig.colorPrimary};
+  --secondary-color: ${siteConfig.colorSecondary};
+  --accent-color: ${siteConfig.colorAccent};
+  --container-w: ${siteConfig.containerWidthMobile};
+  --container-w-lg: ${siteConfig.containerWidth};
+  --gap: ${siteConfig.gap};
+  --font-heading: ${siteConfig.fontHeading};
+  --font-title: ${siteConfig.fontTitle};
+  --font-body: ${siteConfig.fontBody};
+
+  --btn-radius: ${siteConfig.buttonRadius};
+  --btn-bg-accent: ${siteConfig.buttonBgAccent};
+  --btn-text-accent: ${siteConfig.buttonTextAccent};
+  --btn-bg-primary: ${siteConfig.buttonBgPrimary};
+  --btn-text-primary: ${siteConfig.buttonTextPrimary};
+  --btn-bg-transparent: ${siteConfig.buttonBgTransparent};
+  --btn-text-transparent: ${siteConfig.buttonTextTransparent};
+
+  --hd-badge-bg-primary: ${siteConfig.headingBadgeBgPrimary};
+  --hd-badge-text-primary: ${siteConfig.headingBadgeTextPrimary};
+  --hd-badge-bg-accent: ${siteConfig.headingBadgeBgAccent};
+  --hd-badge-text-accent: ${siteConfig.headingBadgeTextAccent};
+  --hd-badge-radius: ${siteConfig.headingBadgeRadius};
+
+  --radius-sm: ${siteConfig.radiusSm};
+  --radius: ${siteConfig.radius};
+  --radius-lg: ${siteConfig.radiusLg};
+  --radius-xl: ${siteConfig.radiusXl};
+}
+`;
+---
+<style is:global set:html={cssVars} />

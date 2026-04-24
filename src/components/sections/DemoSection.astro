@@ -1,0 +1,105 @@
+---
+import Spacer from "../common/Spacer.astro"
+import { demoItems } from "../../config/data"
+import Heading from "../common/Heading.astro"
+import ImageRender from "../common/ImageRender.astro"
+import { siteConfig } from "../../config/site"
+
+
+const sectionSettings = {
+  demoCount: demoItems.length,
+  demoPerRow: 3,
+  demoPerRowTb: 3,
+  demoPerRowMb: 2,
+  demoSpaceBetween: 24,
+  demoSpaceBetweenTb: 20,
+  demoSpaceBetweenMb: 16,
+  limit: 99,
+  sort: "default"
+}
+
+const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, (max-width: 1024px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, calc(${siteConfig.containerWidth} / ${sectionSettings.demoPerRow} - ${sectionSettings.demoSpaceBetween}px * ${sectionSettings.demoPerRow - 1})`;
+---
+
+<section class="demo-section">
+  <div class="section-inner">
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <div class="container">
+      <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
+      <Spacer space={24} spaceTb={20} spaceMb={18} />
+      <Heading level={2} textAlign="center" tag="h2">
+        High-Quality Demos
+      </Heading>
+      <Spacer space={24} spaceTb={20} spaceMb={18} />
+      <p class="text-align-center text-secondary hide-br-mobile">
+        Using Shopify 2.0 with Section ready, a lot of theme settings and options<br/> you are able to create heavy store that looks perfect on any screen resolution.
+      </p>
+      <Spacer space={48} spaceTb={36} spaceMb={30} />
+      <ethan-demos style={`--per-row: ${sectionSettings.demoPerRow}; --per-row-tb: ${sectionSettings.demoPerRowTb}; --per-row-mb: ${sectionSettings.demoPerRowMb}; --space-between: ${sectionSettings.demoSpaceBetween}px; --space-between-tb: ${sectionSettings.demoSpaceBetweenTb}px; --space-between-mb: ${sectionSettings.demoSpaceBetweenMb}px;`}>
+        {demoItems.slice(0, sectionSettings.limit).map((demo,index) => (
+          <div class="demo-item">
+            <div class="demo-item-inner">
+              <a href={demo.url} target="_blank" class="demo-img block">
+                <ImageRender src={demo.image} alt={demo.title} ratio="asos" sizes={sizes} />
+              </a>
+              <a href={demo.url} target="_blank" class="demo-item-title block text-align-center">{demo.title}</a>
+            </div>
+          </div>
+        ))}
+      </ethan-demos>
+    </div>
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+  </div>
+</section>
+
+<style>
+  .demo-section{
+    background-color: #fff;
+  }
+  ethan-demos{
+    display: grid;
+    grid-template-columns: repeat(var(--per-row), 1fr);
+    gap: var(--space-between);
+    @media (width < 991px){
+      grid-template-columns: repeat(var(--per-row-tb), 1fr);
+      gap: var(--space-between-tb);
+    }
+    @media (width < 767px){
+      grid-template-columns: repeat(var(--per-row-mb), 1fr);
+      gap: var(--space-between-mb);
+    }
+  }
+  .demo-item-inner{
+    border-radius: var(--radius);
+    overflow: hidden;
+    background-color: #F0F0F0;
+    padding: 12px;
+  }
+  .demo-img{
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    img{
+      object-position: top;
+    }
+  }
+  .demo-item-title{
+    --fs: 20px;
+    --fw: 500;
+    --lh: 1.3;
+    --ls: -6;
+
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    color: var(--text);
+    text-decoration: none;
+    transition: color .3s ease, opacity .3s ease;
+    padding-top: 24px;
+    padding-bottom: 12px;
+
+    &:hover{
+      color: var(--accent-color);
+    }
+  }
+</style>

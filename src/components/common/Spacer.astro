@@ -13,13 +13,13 @@ const { space = 0, spaceTb = 0, spaceMb = 0 } = Astro.props;
   .spacer{
     height: 1px;
     display: block;
-    margin-bottom: var(--s);
+    padding-bottom: var(--s);
     margin-top: -1px;
     @media (min-width: 768px) and (max-width: 1023px) {
-      margin-bottom: var(--st);
+      padding-bottom: var(--st);
     }
     @media (max-width: 767px) {
-      margin-bottom: var(--sm);
+      padding-bottom: var(--sm);
     }
   }
 </style>

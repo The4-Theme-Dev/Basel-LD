@@ -5,5 +5,6 @@ declare namespace astroHTML.JSX {
     "ethan-accordion": astroHTML.JSX.HTMLAttributes;
     "ethan-accordion-group": astroHTML.JSX.HTMLAttributes;
     "ethan-slider": astroHTML.JSX.HTMLAttributes;
+    "ethan-demos": astroHTML.JSX.HTMLAttributes;
   }
 }
