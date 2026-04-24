@@ -5,8 +5,6 @@ import SeoHead from "../components/SEO/SeoHead.astro";
 import SeoJsonLd from "../components/SEO/SeoJsonLd.astro";
 import Header from "../components/Header/Header.astro";
 
-import libsUrl from "../libs/libs.js?url";
-import globalUrl from "../libs/global.js?url";
 import CssVariables from "../components/SEO/css-variables.astro";
 
 interface Props {
@@ -24,8 +22,7 @@ const { title, description, image, path = "/", lang = "en" } = Astro.props;
     <CssVariables />
     <SeoHead title={title} description={description} image={image} path={path} />
     <SeoJsonLd path={path} description={description} />
-    <script type="module" src={libsUrl}></script>
-    <script type="module" src={globalUrl}></script>
+    <script src="../libs/index.js"></script>
   </head>
   <body>
     <Header />
