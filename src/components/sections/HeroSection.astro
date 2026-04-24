@@ -1,0 +1,208 @@
+---
+import Heading from "../common/Heading.astro"
+import HeadingBadge from "../common/HeadingBadge.astro"
+import Spacer from "../common/Spacer.astro"
+import Button from "../common/Button.astro"
+import Slider from "../common/Slider.astro"
+
+import { siteConfig } from "../../config/site";
+import { demoItems } from "../../config/data";
+import ImageRender from "../common/ImageRender.astro"
+
+
+const buyNow = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
+
+const marqueItems = demoItems;
+
+---
+
+<seciton class="hero-section">
+  <div class="section-inner">
+    <Spacer space={104} spaceTb={70} spaceMb={50} />
+    <div class="container">
+      <div class="hero-content">
+        <div class="reng-lef">
+          <div class="hero-card card-author">
+            <div class="hero-card-inner">
+              <svg width="29" height="32" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_6_5313)">
+                <path d="M28.2353 21.1764C28.2353 22.2117 27.5765 23.5293 26.6353 24.0941L15.6235 31.4352C14.7765 31.9999 13.3647 31.9999 12.5176 31.4352L1.6 24.0941C0.658824 23.5293 0 22.2117 0 21.1764V10.8235C0 9.78817 0.658824 8.47052 1.6 7.90582L12.6118 0.564643C13.4588 -6.31809e-05 14.8706 -6.31809e-05 15.7176 0.564643L26.7294 7.90582C27.5765 8.47052 28.3294 9.78817 28.3294 10.8235V21.1764H28.2353Z" fill="#72BF40"/>
+                <path d="M8.47128 9.41162H19.7654V12.2352H8.47128V9.41162ZM5.64775 14.1175H22.5889V16.941H5.64775V14.1175ZM2.82422 18.8234H25.4125V21.6469H2.82422V18.8234Z" fill="white"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_6_5313">
+                <rect width="28.2353" height="32" fill="white"/>
+                </clipPath>
+                </defs>
+              </svg>  
+              <p>Made by<br> Power Elite Author</p>            
+            </div>
+          </div>
+          <div class="hero-card card-sales">
+            <div class="hero-card-inner">
+              <p class="count">4,500+</p>
+              <p>Sales</p>            
+            </div>
+          </div>
+        </div>
+        <div class="content text-align-center">
+          <HeadingBadge label="Shopify OS 3.0 Ready" variant="primary" />
+          <Spacer space={24} spaceTb={20} spaceMb={15} />
+          <Heading level={1} textAlign="center" tag="h1">
+            <p>
+              Ready to go Demos to<br>
+                run your own <span class="text-accent">eCommerce<br>
+                  website today</span>
+            </p>
+          </Heading>
+          <Spacer space={24} spaceTb={20} spaceMb={15} />
+          <p class="hide-br-mobile text-align-center">Basel is the perfect Shopify theme for performance-driven brands. Built-in<br> AJAX search, Mega Menu, and tools to maximize your conversion rate.</p>
+          <Spacer space={48} spaceTb={36} spaceMb={28} />
+          <Button label="Open Store Free" variant="primary" href={siteConfig.openStoreUrl} />
+          <Button label={buyNow} variant="transparent" href={siteConfig.buyUrl} />
+        </div>
+        <div class="reng-lef2">
+          <div class="hero-card card-rating">
+            <div class="hero-card-inner">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M31.1506 11.4207L21.3133 9.918L16.904 0.526C16.5746 -0.175333 15.424 -0.175333 15.0946 0.526L10.6866 9.918L0.849288 11.4207C0.0412881 11.5447 -0.281379 12.5273 0.285288 13.1073L7.43195 20.4327L5.74262 30.7887C5.60796 31.6113 6.48662 32.2287 7.21329 31.8247L16 26.9687L24.7866 31.826C25.5066 32.226 26.3933 31.6207 26.2573 30.79L24.568 20.434L31.7146 13.1087C32.2813 12.5273 31.9573 11.5447 31.1506 11.4207Z" fill="#FFC107"/>
+              </svg>
+              <p>5.0 Star Rating</p>            
+            </div>
+          </div>
+          <div class="hero-card card-version">
+            <div class="hero-card-inner">
+              <p class="count">40+</p>
+              <p>Versions Included</p>            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <Spacer space={104} spaceTb={70} spaceMb={50} />
+    <div class="hero-marquee-wrap">
+      <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={4} slidesPerViewTb={3} slidesPerViewMb={2} spaceBetween={20}>
+        {marqueItems.map((item,index) => (
+          <swiper-slide>
+            <ImageRender src={item.image} alt={item.title} ratio="square" loading={index < 5 ? "eager" : "lazy"} sizes="(max-width: 767px) 50vw, (max-width: 1024px) 33vw, calc(100vw / 4 - 60px)" />
+          </swiper-slide>
+        ))}
+      </Slider>
+    </div>
+  </div>
+</seciton>
+
+<style>
+  .hero-marquee-wrap{
+    position: relative;
+    &::after{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 35%;
+      background: linear-gradient(180deg, rgba(235, 236, 235, 0) 0%, #EBECEB 100%);
+      content: "";
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+  .hero-marquee-wrap swiper-slide{
+    padding: 5px 0;
+    .image-render-container{
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    }
+    img{
+      object-position: top;
+    }
+  }
+  .hero-card{
+    border-radius: var(--radius);
+    background-color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.42px;
+    color: var(--text);
+    user-select: none;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    --count-text: #E0601B;
+
+    .hero-card-inner p:last-child{
+      margin-top: 8px;
+    }
+    .count{
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: -1.92px;
+      color: var(--count-text);
+    }
+    &.card-version{
+      --count-text: #911BE0;
+    }
+
+    & + .hero-card{
+      margin-top: 12px;
+    }
+  }
+  
+  .hero-content{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    @media (width < 992px){
+      grid-template-columns: 1fr 1fr;
+      .content{
+        grid-column: span 2;
+      }
+      .reng-lef{
+        order: 999;
+      }
+    }
+  }
+  @media (width > 992px){
+    .reng-lef .hero-card:last-child{
+      margin-inline-start: 4rem;
+    }
+    .reng-lef2 .hero-card:first-child{
+      margin-inline-end: 3rem;
+    }
+    .reng-lef2 .hero-card:last-child{
+      margin-inline-start: auto;
+    }
+  }
+  @media (width < 991px){
+    .reng-lef,
+    .reng-lef2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      height: 100%;
+      .hero-card{
+        margin: 0;
+        height: 100%;
+        width: auto;
+        margin-top: 0 !important;
+      }
+    }
+  }
+  @media (width < 767px){
+    .hero-content{
+      column-gap: 0.5rem;
+    }
+    .reng-lef,
+    .reng-lef2{
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      .hero-card{
+        min-height: 120px;
+      }
+    }
+  }
+</style>

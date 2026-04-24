@@ -1,0 +1,30 @@
+---
+import { siteConfig } from "../../config/site";
+import { defaultSeo, buildPageUrl } from "../../config/seo";
+
+interface Props {
+  path?: string;
+  description?: string;
+}
+const { path = "/", description } = Astro.props;
+const pageUrl = buildPageUrl(path);
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.author,
+  url: siteConfig.siteUrl,
+  logo: new URL("/logo.png", siteConfig.siteUrl).toString(),
+  description: description ?? defaultSeo.description,
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.siteName,
+  url: pageUrl,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />

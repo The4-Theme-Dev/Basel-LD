@@ -1,0 +1,111 @@
+---
+import { siteConfig } from "../../config/site";
+import Button from "../common/Button.astro";
+const menu = [
+  {
+    label: "Demos",
+    id: "demos",
+    href: "#demos"
+  },
+  {
+    label: "Features",
+    id: "features",
+    href: "#features"
+  },
+  {
+    label: "Reviews",
+    id: "reviews",
+    href: "#reviews"
+  },
+  {
+    label: "Showcases",
+    id: "showcases",
+    href: "#showcases"
+  },
+  {
+    label: "Open Store Free",
+    id: "open-store-free",
+    href: siteConfig.openStoreUrl
+  }
+]
+
+const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
+---
+
+<ethan-header class="block">
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <a href="/" class="header-logo">
+          <img src="/logo.svg" alt="Basel - Shopify Themes Premium" />
+        </a>
+      </div>
+      <div class="nav-wrap hidden-mobile">
+        <ul class="nav-list">
+          {menu.map((item) => (
+            <li class="nav-item" id={item.id}>
+              <a href={item.href} class="nav-link">{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="action-wrap hidden-mobile">
+        <Button label={buyLabel} variant="accent" href={siteConfig.buyUrl} />
+      </div>
+      <menu-mobile class="hidden-desktop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path></svg>
+      </menu-mobile>
+    </div>
+  </div>
+</ethan-header>
+
+
+<style>
+  ethan-header{
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .header-inner{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    padding-block: 12px;
+    @media (width < 992px){
+      grid-template-columns: 1fr auto;
+      menu-mobile{
+        width: fit-content;
+        display: inline-flex;
+      }
+    }
+  }
+  .nav-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  ul,ol{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-item a{
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text);
+    transition: color .3s ease;
+    &:hover{
+      color: var(--accent-color);
+    }
+  }
+  .nav-item.is-active a{
+    color: var(--accent-color);
+  }
+  
+</style>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  space?: number;
+  spaceTb?: number;
+  spaceMb?: number;
+}
+const { space = 0, spaceTb = 0, spaceMb = 0 } = Astro.props;
+  
+---
+<div class="spacer" style={`--s:${space}px;--st:${spaceTb}px;--sm:${spaceMb}px`} aria-hidden="true"></div>
+
+<style>
+  .spacer{
+    height: 1px;
+    display: block;
+    margin-bottom: var(--s);
+    margin-top: -1px;
+    @media (min-width: 768px) and (max-width: 1023px) {
+      margin-bottom: var(--st);
+    }
+    @media (max-width: 767px) {
+      margin-bottom: var(--sm);
+    }
+  }
+</style>

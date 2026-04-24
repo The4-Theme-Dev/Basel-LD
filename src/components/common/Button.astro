@@ -1,0 +1,106 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  variant?: "primary" | "accent" | "transparent";
+  full?: boolean;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  ariaLabel?: string;
+}
+
+const {
+  label,
+  href,
+  variant = "primary",
+  full = false,
+  disabled = false,
+  type = "button",
+  ariaLabel = label,
+} = Astro.props;
+
+const className = [
+  "btn",
+  `btn--${variant}`,
+  full && "btn--full",
+  disabled && "is-disabled",
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+{
+  href ? (
+    disabled ? (
+      <span class={className} aria-disabled="true" aria-label={ariaLabel}>{label}</span>
+    ) : (
+      <a href={href} class={className} aria-label={ariaLabel}>{label}</a>
+    )
+  ) : (
+    <button type={type} class={className} disabled={disabled} aria-label={ariaLabel}>
+      {label}
+    </button>
+  )
+}
+
+<style>
+  .btn{
+    --btn-fs: 16px;
+    --btn-ls: -3;
+    padding: 13px 20px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--btn-fs);
+    line-height: 1.35;
+    letter-spacing: calc(var(--btn-fs) * ( var(--btn-ls) / 100));
+    border: none;
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    transition: opacity .3s ease, color .3s ease, background-color .3s ease;
+    text-decoration: none;
+
+    &:hover{
+      opacity: 0.8;
+    }
+    &:active{
+      opacity: 0.6;
+    }
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &.is-disabled,
+    &:disabled,
+    &[aria-disabled="true"] {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+  }
+  .btn--primary{
+    --btn-bg: var(--btn-bg-primary);
+    --btn-text: var(--btn-text-primary);
+  }
+  .btn--accent{
+    --btn-bg: var(--btn-bg-accent);
+    --btn-text: var(--btn-text-accent);
+  }
+  .btn--transparent{
+    --btn-bg: var(--btn-bg-transparent);
+    --btn-text: var(--btn-text-transparent);
+    &:hover{
+      color: var(--accent-color);
+    }
+    &:focus-visible {
+      outline-color: var(--accent-color);
+    }
+  }
+</style>

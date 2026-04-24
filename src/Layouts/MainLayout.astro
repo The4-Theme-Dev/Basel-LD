@@ -1,0 +1,32 @@
+---
+import "../style/lenis.css";
+import "../style/global.css";
+import SeoHead from "../components/SEO/SeoHead.astro";
+import SeoJsonLd from "../components/SEO/SeoJsonLd.astro";
+import Header from "../components/Header/Header.astro";
+
+import libsUrl from "../libs/libs.js?url";
+import globalUrl from "../libs/global.js?url";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  path?: string;
+  lang?: string;
+}
+const { title, description, image, path = "/", lang = "en" } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <SeoHead title={title} description={description} image={image} path={path} />
+    <SeoJsonLd path={path} description={description} />
+    <script type="module" src={libsUrl}></script>
+    <script type="module" src={globalUrl}></script>
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
+</html>

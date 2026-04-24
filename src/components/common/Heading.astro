@@ -1,0 +1,60 @@
+---
+interface Props {
+  level: 1 | 2;
+  text?: string;
+  variant?: "primary" | "accent";
+  tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  hideBr?: Boolean;
+  textAlign?: "left" | "center" | "right";
+}
+const { level = 1, text = "", variant = "primary", tag = "h2", hideBr = true, textAlign = "left" } = Astro.props;
+
+const className = [
+  "heading",
+  `heading--${variant}`,
+  hideBr && "hide-br-mobile",
+  level === 1 && "heading--level-1",
+  level === 2 && "heading--level-2",
+  textAlign && `text-align-${textAlign}`,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = tag;
+
+---
+
+<Tag class={className}>
+  <slot>{text}</slot>
+</Tag>
+
+<style>
+  .heading{
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    color: var(--text);
+
+    --fs: 48px;
+    --fw: 400;
+    --lh: 1.25;
+    --ls: -6;
+  }
+
+  .heading--level-1{
+    --fs: 64px;
+    --fw: 400;
+    --lh: 1.1;
+    --ls: -4;
+  }
+  @media (width < 1150px){
+    .heading {
+      --fs: 36px;
+    }
+    .heading--level-1{
+      --fs: 40px;
+    }
+  }
+
+</style>

@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../Layouts/MainLayout.astro";
+import Button from "../components/common/Button.astro";
+import Heading from "../components/common/Heading.astro";
+import HeadingBadge from "../components/common/HeadingBadge.astro";
+import ImageRender from "../components/common/ImageRender.astro";
+import Spacer from "../components/common/Spacer.astro";
+
+import heroDesktop from "../assets/images/test/hero.webp";
+import Accordion from "../components/common/Accordion.astro";
+import AccordionGroup from "../components/common/AccordionGroup.astro";
+---
+
+<BaseLayout
+  title="Basel | Shopify Themes Premium"
+  description="Create a beautiful and functional online store with free or premium Shopify themes and templates."
+  path="/"
+	lang="en"
+>
+  <div class="container">
+		<h2>Buttons</h2>
+		<Spacer space={15} />
+		<Button label="Click me" variant="accent" />
+		<Button label="Submit Your Website" variant="accent" disabled />
+		<Button label="Claim Your Deal" variant="primary" href="#" />
+		<Button label="Buy Basel Now - 59$" variant="transparent" href="#" />
+
+		<Spacer space={30} />
+		<h2>Heading Badge</h2>
+		<Spacer space={15} />
+		<HeadingBadge label="Shopify OS 3.0 Ready" variant="primary" />
+		<HeadingBadge label="General Features List" variant="accent" />
+		<Spacer space={30} />
+		<h2>Section Heading</h2>
+		<Spacer space={15} />
+
+		<Heading level={1} textAlign="center" tag="h2">
+			Why Choose Basel<br>
+			<span class="text-accent">for Your Next Project?</span>
+		</Heading>
+		<Spacer space={20} />
+		<Heading level={2} textAlign="center" tag="h1"> 
+			Ready to go Demos to<br> run your own <span class="text-accent">eCommerce<br> website today</span>
+		</Heading>
+		<Spacer space={20} />
+		<p class="hide-br-mobile text-align-center">Basel is the perfect Shopify theme for performance-driven brands. Built-in<br> AJAX search, Mega Menu, and tools to maximize your conversion rate.</p>
+
+		<Spacer space={20} />
+		<h2>Image render</h2>
+		<Spacer space={15} />
+		<h3>Ratio contain - Landscape</h3>
+		<ImageRender src={heroDesktop} alt="Hero banner" ratio="landscape" class="ratio-contain"/>
+		<Spacer space={15} />
+		<h3>Ratio contain - Portrait</h3>
+		<ImageRender src={heroDesktop} alt="Hero banner" ratio="portrait" class="ratio-contain"/>
+		<Spacer space={15} />
+		<h3>Ratio - Square</h3>
+		<ImageRender src={heroDesktop} alt="Hero banner" ratio="square"/>
+		<Spacer space={15} />
+		<h3>Ratio - 3-2</h3>
+		<ImageRender src={heroDesktop} alt="Hero banner" ratio="3-2"/>
+
+		<Spacer space={20} />
+		<h2>Accordion</h2>
+		<Spacer space={15} />
+		<AccordionGroup>
+			<Accordion open={true}>
+				<h3 slot="title">Accordion Title</h3>
+				<div>
+					<p>Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.</p>
+				</div>
+			</Accordion>
+			<Accordion>
+				<h3 slot="title">Accordion Title</h3>
+				<div>
+					<p>Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.</p>
+				</div>
+			</Accordion>
+			
+		</AccordionGroup>
+		<Spacer space={200} />
+	</div>
+</BaseLayout>

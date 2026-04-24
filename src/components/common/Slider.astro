@@ -1,0 +1,154 @@
+---
+interface Props {
+  type?: "default" | "marquee";
+  direction?: "horizontal" | "vertical";
+  reverse?: boolean;
+  autoplay?: boolean;
+  interval?: number;
+  loop?: boolean;
+  speed?: number;
+  slidesPerView?: number;
+  slidesPerViewTb?: number;
+  slidesPerViewMb?: number;
+  spaceBetween?: number;
+  spaceBetweenTb?: number;
+  spaceBetweenMb?: number;
+}
+
+const {
+  type = "default",
+  direction = "horizontal",
+  reverse = false,
+  autoplay = false,
+  interval = 3000,
+  loop = true,
+  speed = 8000,
+  slidesPerView = 3,
+  slidesPerViewTb = 2,
+  slidesPerViewMb = 1,
+  spaceBetween = 0,
+  spaceBetweenTb = 20,
+  spaceBetweenMb = 16
+} = Astro.props;
+
+const isMarquee = type === "marquee";
+
+const config = {
+  direction,
+  loop,
+  speed: isMarquee ? speed : 600,
+  allowTouchMove: true,
+  grabCursor: true,
+  autoplay: autoplay
+    ? {
+        delay: isMarquee ? 0 : interval,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+        reverseDirection: reverse
+      }
+    : false,
+  watchSlidesProgress: true,
+  observer: true,
+  observeParents: true,
+  breakpoints: {
+    0: { slidesPerView: slidesPerViewMb, spaceBetween: spaceBetweenMb },
+    768: { slidesPerView: slidesPerViewTb, spaceBetween: spaceBetweenTb },
+    1024: { slidesPerView, spaceBetween }
+  }
+};
+---
+
+<ethan-slider data-config={JSON.stringify(config)}>
+  <swiper-container init="false">
+    <slot />
+  </swiper-container>
+</ethan-slider>
+
+<style>
+  .hero-vertical-slider {
+    height: 520px;
+  }
+  .hero-vertical-slider swiper-container {
+    height: 100%;
+  }
+  swiper-container::part(wrapper){
+    transition-timing-function: linear !important;
+  }
+</style>
+<!-- 
+How to use:
+default: 
+  <Slider type="marquee" autoplay />
+
+Vertical: Down to up: 
+  <Slider type="marquee" direction="vertical" autoplay />
+
+Vertical: Up to down: 
+  <Slider type="marquee" direction="vertical" reverse autoplay />
+
+
+No marquee:
+
+  <Slider
+    slidesPerView={3}
+    slidesPerViewTb={2}
+    slidesPerViewMb={1}
+    spaceBetween={24}
+    spaceBetweenTb={20}
+    spaceBetweenMb={16}
+  >
+    <swiper-slide>...</swiper-slide>
+    <swiper-slide>...</swiper-slide>
+    <swiper-slide>...</swiper-slide>
+  </Slider>
+
+Marquee default: 
+
+  <Slider
+    type="marquee"
+    autoplay={true}
+    interval={0}
+    speed={9000}
+    loop={true}
+    slidesPerView={4}
+    slidesPerViewTb={3}
+    slidesPerViewMb={2}
+    spaceBetween={20}
+  >
+    <swiper-slide>...</swiper-slide>
+    <swiper-slide>...</swiper-slide>
+    <swiper-slide>...</swiper-slide>
+  </Slider>
+
+Marquee vertical: Down to up: 
+
+  <div class="hero-vertical-slider">
+    <Slider
+      type="marquee"
+      direction="vertical"
+      autoplay={true}
+      speed={10000}
+      loop={true}
+      slidesPerView={3}
+      spaceBetween={16}
+    >
+      <swiper-slide>...</swiper-slide>
+      <swiper-slide>...</swiper-slide>
+      <swiper-slide>...</swiper-slide>
+    </Slider>
+  </div>
+
+Marquee vertical: Up to down: 
+
+  <Slider
+    type="marquee"
+    direction="vertical"
+    reverse={true}
+    autoplay={true}
+    speed={10000}
+    loop={true}
+  >
+    <swiper-slide>...</swiper-slide>
+    <swiper-slide>...</swiper-slide>
+  </Slider>
+-->

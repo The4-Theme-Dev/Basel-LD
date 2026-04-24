@@ -1,0 +1,69 @@
+---
+interface Props {
+  open?: boolean;
+}
+const { open = false } = Astro.props;
+---
+
+<ethan-accordion class="block" {...(open ? { open: "" } : {})}>
+    <button class="accordion-btn" type="button" aria-expanded="false">
+      <slot name="title" >
+    </slot>
+  </button>
+  <div class="accordion-content">
+    <div class="wrapper">
+      <slot/>
+    </div>
+  </div>
+</ethan-accordion>
+
+
+<style>
+  .accordion-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 240ms cubic-bezier(.4,0,.2,1);
+    will-change: height;
+
+    color: var(--text-secondary);
+  }
+  .wrapper{
+    margin-top: var(--margin-top);
+    --margin-top: 15px;
+  }
+  ethan-accordion{
+    padding: var(--padding);
+    border-radius: var(--radius);
+    border: 3px solid var(--border-color);
+    opacity: var(--opacity);
+    transition: opacity .3s ease, border-color .3s ease;
+
+    --border-color: transparent;
+    --padding: 30px;
+    --radius: 16px;
+    --opacity: 0.4;
+    --border-color-active: var(--accent-color);
+
+    &:has(button[aria-expanded="true"]){
+      --opacity: 1;
+      --border-color: var(--border-color-active);
+    }
+  }
+  button{
+    font-size: var(--btn-fs);
+    font-weight: var(--btn-fw);
+    line-height: var(--btn-lh);
+    letter-spacing: calc(var(--btn-fs) * ( var(--btn-ls) / 100));
+    color: var(--btn-text);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border: none;
+
+    --btn-fs: 24px;
+    --btn-fw: 500;
+    --btn-lh: 1.3;
+    --btn-ls: -3;
+  }
+
+</style>
