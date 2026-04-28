@@ -24,6 +24,12 @@ const reasons = [
   }
 ]
 
+const sectionSettings = {
+  title: `Why Choose Basel<br>
+        <span class="text-accent">for Your Next Project?</span>`,
+  sub: `Choosing the right theme is the most important decision for your eCommerce business.<br> Basel isn't just a skin; it's a complete business engine.`,
+}
+
 ---
 
 <section class="reason-section">
@@ -31,11 +37,10 @@ const reasons = [
     <Spacer space={128} spaceTb={70} spaceMb={50} />
     <div class="container hide-br-mobile">
       <Heading level={2} textAlign="center" tag="h2">
-        Why Choose Basel<br>
-        <span class="text-accent">for Your Next Project?</span>
+        <span set:html={sectionSettings.title}></span>
       </Heading>
       <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <p class="text-align-center text-secondary">Choosing the right theme is the most important decision for your eCommerce business.<br> Basel isn't just a skin; it's a complete business engine.</p>
+      <p class="text-align-center text-secondary" set:html={sectionSettings.sub}></p>
       <Spacer space={48} spaceTb={36} spaceMb={30} />
       <div class="reason-list">
         {reasons.map(({title, description, Icon}) => (

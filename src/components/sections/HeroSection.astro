@@ -14,6 +14,15 @@ const buyNow = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
 
 const marqueItems = demoItems;
 
+const sectionSettings = {
+  title: `<span>
+              Ready to go Demos to<br>
+                run your own <span class="text-accent">eCommerce<br>
+                  website today</span>
+            </span>`,
+  sub: `Basel is the perfect Shopify theme for performance-driven brands. Built-in<br> AJAX search, Mega Menu, and tools to maximize your conversion rate.`,
+}
+
 ---
 
 <seciton class="hero-section">
@@ -49,14 +58,10 @@ const marqueItems = demoItems;
           <HeadingBadge label="Shopify OS 3.0 Ready" variant="primary" />
           <Spacer space={24} spaceTb={20} spaceMb={15} />
           <Heading level={1} textAlign="center" tag="h1">
-            <p>
-              Ready to go Demos to<br>
-                run your own <span class="text-accent">eCommerce<br>
-                  website today</span>
-            </p>
+            <span set:html={sectionSettings.title}></span>
           </Heading>
           <Spacer space={24} spaceTb={20} spaceMb={15} />
-          <p class="hide-br-mobile text-align-center">Basel is the perfect Shopify theme for performance-driven brands. Built-in<br> AJAX search, Mega Menu, and tools to maximize your conversion rate.</p>
+          <p class="hide-br-mobile text-align-center" set:html={sectionSettings.sub}></p>
           <Spacer space={48} spaceTb={36} spaceMb={28} />
           <Button label="Open Store Free" variant="primary" href={siteConfig.openStoreUrl} />
           <Button label={buyNow} variant="transparent" href={siteConfig.buyUrl} />
@@ -81,7 +86,7 @@ const marqueItems = demoItems;
     </div>
     <Spacer space={104} spaceTb={70} spaceMb={50} />
     <div class="hero-marquee-wrap">
-      <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={4} slidesPerViewTb={3} slidesPerViewMb={2} spaceBetween={20}>
+      <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={4} slidesPerViewTb={3} slidesPerViewMb={1.4} spaceBetween={20}>
         {marqueItems.map((item,index) => (
           <swiper-slide>
             <ImageRender src={item.image} alt={item.title} ratio="square" loading={index < 5 ? "eager" : "lazy"} sizes="(max-width: 767px) 50vw, (max-width: 1024px) 33vw, calc(100vw / 4 - 60px)" />
@@ -94,6 +99,7 @@ const marqueItems = demoItems;
 
 <style>
   .hero-marquee-wrap{
+    
     position: relative;
     &::after{
       position: absolute;

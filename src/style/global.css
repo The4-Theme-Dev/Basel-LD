@@ -43,7 +43,9 @@ body {
     padding-inline: 15px;
   }
 }
-
+.text-primary{
+  color: var(--text);
+}
 .text-accent{
   color: var(--accent-color);
 }

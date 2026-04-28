@@ -1,0 +1,105 @@
+---
+import Spacer from "../common/Spacer.astro";
+import { demoHeaderItems } from "../../config/data";
+import Heading from "../common/Heading.astro";
+import Slider from "../common/Slider.astro";
+import ImageRender from "../common/ImageRender.astro";
+
+const sectionSettings = {
+  headerCount: demoHeaderItems.length,
+  title: "Flexible Header Layouts",
+  sub: `Design your perfect header experience with fully customizable layouts<br> built for usability and brand identity.`,
+  demoPerRow: "auto",
+  demoPerRowTb: "auto",
+  demoPerRowMb: "auto",
+  demoSpaceBetween: 24,
+  demoSpaceBetweenTb: 20,
+  demoSpaceBetweenMb: 12,
+  limit: 99,
+  sort: "default",
+  imageRatio: "adapt-image"
+}
+
+const sizes = `(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 50vw`;
+
+---
+
+<section class="preview-header">
+  <div class="section-inner">
+    <div class="container">
+      <Spacer space={128} spaceTb={70} spaceMb={30} />
+      <div class="preview-header-inner">
+        <div class="preview-header-left">
+          <h6 class="heading-count text-accent">{sectionSettings.headerCount}+</h6>
+          <Spacer space={24} spaceTb={20} spaceMb={18} />
+          <Heading level={2} textAlign="left" tag="h2">
+            {sectionSettings.title}
+          </Heading>
+          <Spacer space={24} spaceTb={20} spaceMb={18} />
+          <p class="text-primary hide-br-mobile" set:html={sectionSettings.sub}></p>
+          <Spacer space={14} spaceTb={0} spaceMb={0} />
+        </div>
+        <div class="preview-header-right">
+          <Slider type="marquee" direction="vertical" autoplay={true} interval={0} speed={3000} slidesPerView={sectionSettings.demoPerRow} slidesPerViewTb={sectionSettings.demoPerRowTb} slidesPerViewMb={sectionSettings.demoPerRowMb} spaceBetween={sectionSettings.demoSpaceBetween}>
+            {demoHeaderItems.map((item) => (
+              <swiper-slide>
+                <ImageRender src={item.image} alt={item.title} ratio={sectionSettings.imageRatio as any} sizes={sizes} />
+              </swiper-slide>
+            ))}
+          </Slider>
+        </div>
+      </div>
+      <Spacer space={128} spaceTb={70} spaceMb={40} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-inner{
+    margin-inline: auto;
+    width: calc(100vw - 160px);
+    border-radius: var(--radius-xl);
+    background-color: #090909;
+    position: relative;
+    --text: #fff;
+    pointer-events: none;
+    &::before{
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) translateX(-50px);
+      width: 18vw;
+      height: 18vw;
+      background-color: var(--accent-color);
+      filter: blur(100px);
+      opacity: .3;
+      border-radius: 9999px;
+      pointer-events: none;
+    }
+    @media (width < 1580px){
+      width: calc(100vw - 4vw);
+    }
+    @media (width < 767px){
+      width: 100vw;
+      border-radius: 0;
+    }
+  }
+  .preview-header-inner{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    @media (width < 767px){
+      grid-template-columns: 1fr;
+    }
+  }
+  .preview-header-inner > *{
+    min-width: 0;
+  }
+  .preview-header-right{
+    --height: 500px;
+    --height-tb: 500px;
+    --height-mb: 300px;
+  }
+</style>

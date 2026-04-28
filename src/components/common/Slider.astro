@@ -7,12 +7,13 @@ interface Props {
   interval?: number;
   loop?: boolean;
   speed?: number;
-  slidesPerView?: number;
-  slidesPerViewTb?: number;
-  slidesPerViewMb?: number;
+  slidesPerView?: number | string;
+  slidesPerViewTb?: number | string;
+  slidesPerViewMb?: number | string;
   spaceBetween?: number;
   spaceBetweenTb?: number;
   spaceBetweenMb?: number;
+  className?: string;
 }
 
 const {
@@ -28,10 +29,16 @@ const {
   slidesPerViewMb = 1,
   spaceBetween = 0,
   spaceBetweenTb = 20,
-  spaceBetweenMb = 16
+  spaceBetweenMb = 16,
+  className = ""
 } = Astro.props;
 
 const isMarquee = type === "marquee";
+
+const finalClassName =
+  direction === "vertical"
+    ? `${className} slider-vertical`.trim()
+    : className;
 
 const config = {
   direction,
@@ -58,18 +65,32 @@ const config = {
 };
 ---
 
-<ethan-slider data-config={JSON.stringify(config)}>
+<ethan-slider class={finalClassName} data-config={JSON.stringify(config)}>
   <swiper-container init="false">
     <slot />
   </swiper-container>
 </ethan-slider>
 
 <style>
-  .hero-vertical-slider {
-    height: 520px;
+  .slider-vertical {
+    display: block;
+    --slide-height: var(--height, 500px);
+    --slide-height-tb: var(--height-tb, var(--height));
+    --slide-height-mb: var(--height-mb, var(--height));
+    height: var(--slide-height);
+    @media (width < 1024px){
+      --slide-height: var(--height-tb);
+    }    
+    @media (width < 767px){
+      --slide-height: var(--slide-height-mb);
+    }
   }
-  .hero-vertical-slider swiper-container {
+
+  .slider-vertical swiper-container {
     height: 100%;
+  }
+  .slider-vertical :global(swiper-slide){
+    height: auto;
   }
   swiper-container::part(wrapper){
     transition-timing-function: linear !important;

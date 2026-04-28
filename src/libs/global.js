@@ -219,3 +219,89 @@ if (!customElements.get("ethan-slider")) {
     }
   );
 }
+
+if (!customElements.get("ethan-tabs")) {
+  customElements.define(
+    "ethan-tabs",
+    class extends HTMLElement {
+      constructor() {
+        super();
+        if (this._inited) return;
+        this._inited = true;
+        this.indicator = this.querySelector('[data-indicator]');
+        this.btns = this.querySelectorAll('button');
+        this.section = document.getElementById(this.sectionID);
+        this.contents = this.section.querySelectorAll('[data-content-index]');
+
+        this.rootTab = this.querySelector('.tabs-list');
+
+      }
+      get itemActive(){
+        return Array.from(this.btns || []).find(
+          (btn) => btn.getAttribute('aria-selected') === 'true'
+        );
+      }
+      get rootRect(){
+        return this.rootTab.getBoundingClientRect();
+      }
+      get initIndicatorPos(){
+        return{
+          width: this.itemActive.getBoundingClientRect().width,
+          left: this.itemActive.getBoundingClientRect().left - this.rootRect.left,
+        }
+      }
+      get sectionID(){
+        return this.getAttribute('section-id') || '';
+      }
+      
+      connectedCallback(){
+        
+        this.setupEventListeners();
+        this.initIndicator(this.initIndicatorPos.width, this.initIndicatorPos.left);
+      }
+      disconnectedCallback(){
+        this.removeEventListener('click', this.handleChangeTab.bind(this));
+      }
+      setupEventListeners(){
+        this.addEventListener('click', this.handleChangeTab.bind(this));
+        window.addEventListener('resize', () => {
+          this.initIndicator(this.initIndicatorPos.width, this.initIndicatorPos.left);
+        });
+      }
+
+      initIndicator(width,left){
+        this.indicator.style.setProperty('--width', width + 'px');
+        this.indicator.style.setProperty('--left', left + 'px');
+      }
+
+      handleChangeTab(e){
+        let t_index = e.target.dataset.tabIndex;
+        this.deActiveBtn();
+        this.activeBtn(t_index);
+        this.deActiveContent();
+        this.activeContent(t_index);
+        this.initIndicator(this.initIndicatorPos.width, this.initIndicatorPos.left);
+      }
+      deActiveBtn(){
+        Array.from(this.btns || []).forEach(btn => {
+          btn.setAttribute('aria-selected', 'false');
+        });
+      }
+      activeBtn(index){
+        let t_btn = this.btns[index];
+        if(!t_btn) return;
+        t_btn.setAttribute('aria-selected', 'true');
+      }
+      deActiveContent(){
+        Array.from(this.contents || []).forEach(content => {
+          content.setAttribute('is-selected', 'false');
+        });
+      }
+      activeContent(index){
+        let t_content = this.contents[index];
+        if(!t_content) return;
+        t_content.setAttribute('is-selected', 'true');
+      }
+    }
+  );
+}

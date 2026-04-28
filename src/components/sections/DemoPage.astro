@@ -1,0 +1,153 @@
+---
+import Spacer from "../common/Spacer.astro"
+import { demoItems } from "../../config/data"
+import Heading from "../common/Heading.astro"
+import ImageRender from "../common/ImageRender.astro"
+import { siteConfig } from "../../config/site"
+import Slider from "../common/Slider.astro"
+import Tabs from "../common/Tabs.astro"
+
+
+const sectionSettings = {
+  demoCount: demoItems.length,
+  title: "Powerful Inner Pages & Shop Layouts",
+  sub: "Everything you need to build a complete, high-performing eCommerce experience<br> — beautifully designed and fully optimized.",
+  demoPerRow: 4,
+  demoPerRowTb: 3,
+  demoPerRowMb: 1.3,
+  demoSpaceBetween: 32,
+  demoSpaceBetweenTb: 20,
+  demoSpaceBetweenMb: 16,
+  limit: 99,
+  sort: "default",
+  imageRatio: "square"
+}
+
+const itemActive = 2;
+
+const tabs = [
+  {
+    title: "Shop pages",
+    dataDemo: demoItems 
+  },
+  {
+    title: "Product pages",
+    dataDemo: demoItems
+  },
+  {
+    title: "Collection pages",
+    dataDemo: demoItems
+  }
+]
+
+const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, (max-width: 1024px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, calc(${siteConfig.containerWidth} / ${sectionSettings.demoPerRow} - ${sectionSettings.demoSpaceBetween}px * ${sectionSettings.demoPerRow - 1})`;
+---
+
+<section class="demo-section">
+  <div class="section-inner">
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <div class="container">
+      <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
+      <Spacer space={24} spaceTb={20} spaceMb={18} />
+      <Heading level={2} textAlign="center" tag="h2">
+        {sectionSettings.title}
+      </Heading>
+      <Spacer space={24} spaceTb={20} spaceMb={18} />
+      <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
+      </p>
+      <Spacer space={48} spaceTb={36} spaceMb={30} />
+    </div>
+      <Tabs>
+        <slot slot="tabs-list">
+          {tabs.map((tab, index) => (
+            <button type="button" aria-selected={index === itemActive ? "true" : "false"} class="tabs-list-item" data-tab-index={index}>
+              {tab.title}
+            </button>
+          ))}
+        </slot>
+        <slot slot="tabs-content"> 
+          {tabs.map((tab,index) => (
+            <div data-content-index={index} is-selected={index === itemActive ? "true" : "false"} class="tabs-content-item">
+               <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={sectionSettings.demoPerRow} slidesPerViewTb={sectionSettings.demoPerRowTb} slidesPerViewMb={sectionSettings.demoPerRowMb} spaceBetween={sectionSettings.demoSpaceBetween}>
+                {tab.dataDemo.slice(0, sectionSettings.limit).map((demo) => (
+                  <swiper-slide>
+                    <div class="demo-item">
+                    <div class="demo-item-inner">
+                      <a href={demo.url} target="_blank" class="demo-img block">
+                        <ImageRender src={demo.image} alt={demo.title} ratio={sectionSettings.imageRatio as any} sizes={sizes} />
+                      </a>
+                      <a href={demo.url} target="_blank" class="demo-item-title flex text-align-left">
+                        {demo.title}
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 6.75C18 6.94891 17.921 7.13968 17.7803 7.28033C17.6397 7.42098 17.4489 7.5 17.25 7.5C17.0511 7.5 16.8603 7.42098 16.7197 7.28033C16.579 7.13968 16.5 6.94891 16.5 6.75V2.56125L10.2816 8.78063C10.1408 8.92136 9.94996 9.00042 9.75094 9.00042C9.55191 9.00042 9.36104 8.92136 9.22031 8.78063C9.07958 8.63989 9.00052 8.44902 9.00052 8.25C9.00052 8.05098 9.07958 7.86011 9.22031 7.71937L15.4387 1.5H11.25C11.0511 1.5 10.8603 1.42098 10.7197 1.28033C10.579 1.13968 10.5 0.948912 10.5 0.75C10.5 0.551088 10.579 0.360322 10.7197 0.21967C10.8603 0.0790178 11.0511 0 11.25 0H17.25C17.4489 0 17.6397 0.0790178 17.7803 0.21967C17.921 0.360322 18 0.551088 18 0.75V6.75ZM14.25 9C14.0511 9 13.8603 9.07902 13.7197 9.21967C13.579 9.36032 13.5 9.55109 13.5 9.75V16.5H1.5V4.5H8.25C8.44891 4.5 8.63968 4.42098 8.78033 4.28033C8.92098 4.13968 9 3.94891 9 3.75C9 3.55109 8.92098 3.36032 8.78033 3.21967C8.63968 3.07902 8.44891 3 8.25 3H1.5C1.10218 3 0.720644 3.15804 0.43934 3.43934C0.158035 3.72064 0 4.10218 0 4.5V16.5C0 16.8978 0.158035 17.2794 0.43934 17.5607C0.720644 17.842 1.10218 18 1.5 18H13.5C13.8978 18 14.2794 17.842 14.5607 17.5607C14.842 17.2794 15 16.8978 15 16.5V9.75C15 9.55109 14.921 9.36032 14.7803 9.21967C14.6397 9.07902 14.4489 9 14.25 9Z" fill="currentColor"/>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  </swiper-slide>
+                ))}
+              </Slider>
+            </div>
+          ))}
+        </slot>
+      </Tabs>
+   
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+  </div>
+</section>
+
+<style>
+
+  ethan-demos{
+    display: grid;
+    grid-template-columns: repeat(var(--per-row), 1fr);
+    gap: var(--space-between);
+    @media (width < 991px){
+      grid-template-columns: repeat(var(--per-row-tb), 1fr);
+      gap: var(--space-between-tb);
+    }
+    @media (width < 767px){
+      grid-template-columns: repeat(var(--per-row-mb), 1fr);
+      gap: var(--space-between-mb);
+    }
+  }
+  .demo-item-inner{
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background-color: #fff;
+    padding: 12px;
+  }
+  .demo-img{
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    img{
+      object-position: top;
+    }
+  }
+  .demo-item-title{
+    --fs: 20px;
+    --fw: 500;
+    --lh: 1.3;
+    --ls: -3;
+
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    color: var(--text);
+    text-decoration: none;
+    transition: color .3s ease, opacity .3s ease;
+    padding-top: 24px;
+    padding-bottom: 20px;
+    gap: 8px;
+    align-items: center;
+    padding-inline: 20px;
+
+    &:hover{
+      color: var(--accent-color);
+    }
+    @media (width < 1024px){
+      --fs: 16px;
+    }
+  }
+</style>

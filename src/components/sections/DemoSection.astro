@@ -8,6 +8,8 @@ import { siteConfig } from "../../config/site"
 
 const sectionSettings = {
   demoCount: demoItems.length,
+  title: "High-Quality Demos",
+  sub: "Using Shopify 2.0 with Section ready, a lot of theme settings and options<br/> you are able to create heavy store that looks perfect on any screen resolution.",
   demoPerRow: 3,
   demoPerRowTb: 3,
   demoPerRowMb: 2,
@@ -28,11 +30,10 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
       <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
       <Spacer space={24} spaceTb={20} spaceMb={18} />
       <Heading level={2} textAlign="center" tag="h2">
-        High-Quality Demos
+        {sectionSettings.title}
       </Heading>
       <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <p class="text-align-center text-secondary hide-br-mobile">
-        Using Shopify 2.0 with Section ready, a lot of theme settings and options<br/> you are able to create heavy store that looks perfect on any screen resolution.
+      <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
       </p>
       <Spacer space={48} spaceTb={36} spaceMb={30} />
       <ethan-demos style={`--per-row: ${sectionSettings.demoPerRow}; --per-row-tb: ${sectionSettings.demoPerRowTb}; --per-row-mb: ${sectionSettings.demoPerRowMb}; --space-between: ${sectionSettings.demoSpaceBetween}px; --space-between-tb: ${sectionSettings.demoSpaceBetweenTb}px; --space-between-mb: ${sectionSettings.demoSpaceBetweenMb}px;`}>
@@ -100,6 +101,9 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
 
     &:hover{
       color: var(--accent-color);
+    }
+    @media (width < 767px){
+      --fs: 16px;
     }
   }
 </style>

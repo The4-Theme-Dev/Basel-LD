@@ -1,0 +1,145 @@
+---
+import Spacer from './Spacer.astro';
+
+interface Props {
+  sectionId?: string;
+  space?: number;
+  spaceTb?: number;
+  spaceMb?: number;
+}
+const { sectionId=`tabs-${crypto.randomUUID().slice(0, 8)}`, space = 48, spaceTb = 36, spaceMb = 30 } = Astro.props;
+---
+
+
+<div id={sectionId} class="ethan-tabs">
+  <div class="container">
+    <div class="tab-wrap">
+      <ethan-tabs aria-controls={`${sectionId}-content`} section-id={sectionId}>
+        <div class="tabs-list">
+          <span data-indicator class="tabs-list-indicator block" style="--width: 0; --height: 0; --top: 0; --left: 8px;"></span>
+          <slot name="tabs-list" />
+        </div>
+      </ethan-tabs>
+    </div>
+  </div>
+  <Spacer space={space} spaceTb={spaceTb} spaceMb={spaceMb} />
+  <div id={`${sectionId}-content`} class="tabs-content">
+    <slot name="tabs-content" />
+  </div>
+</div>
+
+<style>
+  .tab-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ethan-tabs{
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 9999px;
+    display: block;
+  }
+  .tabs-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+  }
+  .tabs-list :global(button){
+    --fs: 16px;
+    --lh: 1.35;
+    --ls: -3;
+    --fw: 500;
+    font-size: var(--fs);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    font-weight: var(--fw);
+    color: var(--text);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 9px 16px;
+    border-radius: 9999px;
+    transition: background-color .3s ease, color .3s ease;
+    z-index: 2;
+    white-space: nowrap;
+
+    &:focus-visible
+    {
+      outline: 1px solid var(--accent-color);
+    }
+    &[aria-selected="true"]{
+      color: #fff;
+    }
+    @media (hover: hover){
+      &:hover{
+        outline: 1px solid var(--accent-color);
+      }
+    }
+    @media (width < 1024px){
+      &[aria-selected="true"]{
+        background-color: var(--accent-color);
+      }
+    }
+  }
+  @media (max-width: 1024px){
+    .tabs-list{
+      justify-content: flex-start;
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-wrap: nowrap;
+      width: 100%;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tabs-list::-webkit-scrollbar{
+      display: none;
+    }
+    .tabs-list :global(button){
+      flex: 0 0 auto;           
+      scroll-snap-align: start;
+      white-space: nowrap;
+    }
+  }
+  .tabs-content{
+    position: relative;
+  }
+  .tabs-list-indicator{
+    position: absolute;
+    left: var(--left);
+    top: 50%;
+    height: 100%;
+    transform: translateY(-50%);
+    width: var(--width);
+    background-color: var(--accent-color);
+    border-radius: 9999px;
+    transition: width .3s ease, height .3s ease, top .3s ease, left .3s ease, background-color .3s ease;
+    z-index: 1;
+    transform-origin: left center;
+  }
+  .tabs-content :global(.tabs-content-item){
+    opacity: 0;
+    transition: opacity .3s ease, visibility .3s ease, transform .3s cubic-bezier(.4,0,.2,1);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    visibility: hidden;
+    &[is-selected="true"]{
+      animation: slide-down 0.5s ease-out forwards;
+      position: relative;
+    }
+  }
+  @keyframes slide-down {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); pointer-events: auto; visibility: visible; }
+  }
+  @media (width < 1024px){
+    .tabs-list-indicator{
+      display: none;
+    }
+  }
+</style>
