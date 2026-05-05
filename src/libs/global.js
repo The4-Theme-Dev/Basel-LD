@@ -275,6 +275,8 @@ if (!customElements.get("ethan-tabs")) {
       }
 
       handleChangeTab(e){
+        e.preventDefault();
+        if(e.target.hasAttribute('disabled') || e.target.tagName !== 'BUTTON') return;
         let t_index = e.target.dataset.tabIndex;
         this.deActiveBtn();
         this.activeBtn(t_index);
@@ -301,6 +303,65 @@ if (!customElements.get("ethan-tabs")) {
         let t_content = this.contents[index];
         if(!t_content) return;
         t_content.setAttribute('is-selected', 'true');
+      }
+    }
+  );
+}
+
+if (!customElements.get("ethan-lazy-video")) {
+  customElements.define(
+    "ethan-lazy-video",
+    class extends HTMLElement {
+      connectedCallback() {
+        if (this._inited) return;
+        this._inited = true;
+
+        this.video = this.querySelector("video");
+        
+        if (!this.video) return;
+
+        this.reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const threshold = Number(this.dataset.threshold || "0.25");
+
+        if (this.reduceMotion) {
+          this.video.removeAttribute("autoplay");
+          return;
+        }
+        if(this.video.hasAttribute('autoplay')){
+          this.#safeVideo(true);
+        }
+
+        this.#safeVideo(false);
+
+        this._io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!this.video) return;
+              if (entry.isIntersecting) {
+                this.#safeVideo(true);
+                this._io.unobserve(this.video);
+              } else {
+                // this.#safeVideo(false);
+              }
+            });
+          },
+          { threshold: Number.isFinite(threshold) ? threshold : 0.25 }
+        );
+
+        this._io.observe(this);
+      }
+      disconnectedCallback() {
+        this._io?.disconnect();
+        this._io = null;
+      }
+      #safeVideo(state = true) {
+        if (!this.video) return;
+        if (state) {
+          this.video.play().catch(() => {});
+        } else {
+          this.video.pause();
+        }
       }
     }
   );

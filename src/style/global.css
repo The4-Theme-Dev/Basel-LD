@@ -6,9 +6,7 @@
   margin: 0;
   padding: 0;
 }
-html{
-  scroll-behavior: smooth;
-}
+
 html,
 body {
   margin: 0;
@@ -113,6 +111,12 @@ body {
 }
 .ratio-adapt-image .ratio{
   --ratio-percent: calc(100% / (var(--aspect-ratioapt)))
+}
+.ratio-9-16{
+  --ratio-percent: 177.7777778%;
+}
+.ratio-2-1{
+  --ratio-percent: 200%;
 }
 .ratio-3-2 {
   --ratio-percent: 150%;

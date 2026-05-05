@@ -42,8 +42,8 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
       </div>
       <div class="nav-wrap hidden-mobile">
         <ul class="nav-list">
-          {menu.map((item) => (
-            <li class="nav-item" id={item.id}>
+          {menu.map((item,index) => (
+            <li class="nav-item" id={item.id + index}>
               <a href={item.href} class="nav-link">{item.label}</a>
             </li>
           ))}

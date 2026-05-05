@@ -13,13 +13,13 @@ const reasons = [
     Icon: walletIcon
   },
   {
-    title: "Elite Author Support",
-    description: "Get direct access to our professional support team. We help with technical setup, bug fixes, and general queries to ensure your store runs perfectly 24/7.",
+    title: "Power Elite Author",
+    description: `Trusted by 50,000+ customers worldwide. Get<br> expert support for setup, bug fixes, and<br> everything you need to keep your store running<br> smoothly 24/7.`,
     Icon: powerIcon
   },
   {
-    title: "Developer-Friendly Code",
-    description: "Clean, well-documented Liquid and JS code. If you need to hire a developer for custom work, they will love working with Basel's organized structure.",
+    title: "Premium Customer Service",
+    description: "Experience top-tier support from a dedicated team committed to your success. From technical setup to ongoing optimization, we’re here to help you every step of the way — quickly and reliably.",
     Icon: fileIcon
   }
 ]
@@ -47,7 +47,7 @@ const sectionSettings = {
           <div class="reason-item">
             <Icon />
             <h3 class="reason-item-title">{title}</h3>
-            <p class="reason-item-description text-secondary">{description}</p>
+            <p class="reason-item-description text-secondary hide-br-mobile" set:html={description}></p>
           </div>
         ))}
       </div>

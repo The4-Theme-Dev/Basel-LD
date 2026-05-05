@@ -1,0 +1,229 @@
+---
+import Spacer from "../common/Spacer.astro";
+import Heading from "../common/Heading.astro";
+import HeadingBadge from "../common/HeadingBadge.astro";
+
+import videoTest from "../../assets/videos/test.mp4";
+import Slider from "../common/Slider.astro";
+import IpFrame from "../common/ipFrame.astro";
+
+// icon
+import mb from '../../assets/icon/responsive/1.svg';
+import retina from '../../assets/icon/responsive/2.svg';
+import touch from '../../assets/icon/responsive/3.svg';
+import fast from '../../assets/icon/responsive/4.svg';
+
+const sectionSettings = {
+  label: "General Features List",
+  title: "100% Responsive Layout",
+  sub: `Basel is built to deliver a flawless experience on every device.<br> It looks stunning on desktops, tablets, and smartphones.`,
+
+  itemperRowXL: 5,
+  itemperRow: 4,
+  itemperRowTb: 2.5,
+  itemperRowMb: 1.5,
+  
+  itemSpaceBetweenXL: 32,
+  itemSpaceBetween: 32,
+  itemSpaceBetweenTb: 30,
+  itemSpaceBetweenMb: 30,
+  limit: 99,
+
+  items: [
+    {
+      video: videoTest,
+      title: "Blog",
+    },
+    {
+      video: videoTest,
+      title: "Search Results",
+    },
+    {
+      video: videoTest,
+      title: "Shopage",
+    },
+    {
+      video: videoTest,
+      title: "Homepage",
+    },
+    {
+      video: videoTest,
+      title: "Blog",
+    },
+    {
+      video: videoTest,
+      title: "Article",
+    },
+  ],
+
+  responsiveItems: [
+    {
+      icon: mb,
+      title: "Mobile-First",
+      sub: `Optimized for all screen sizes`
+    },
+    {
+      icon: retina,
+      title: "Retina Ready",
+      sub: `Sharp and crisp on any display`
+    },
+    {
+      icon: touch,
+      title: "Touch Friendly",
+      sub: `Smooth navigation for better UX`
+    },
+    {
+      icon: fast,
+      title: "Fast & Lightweight",
+      sub: `Performance optimized for mobile users`
+    }
+  ]
+}
+---
+
+<section class="responsive-section">
+  <Spacer space={128} spaceTb={70} spaceMb={50} />
+  <div class="elip1"></div>
+  <div class="elip2"></div>
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-heading text-align-center">
+        <HeadingBadge label={sectionSettings.label} variant="primary" />
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <Heading level={2} textAlign="center" tag="h2">
+          {sectionSettings.title}
+        </Heading>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
+        </p>
+        <Spacer space={64} spaceTb={40} spaceMb={30} />
+      </div>
+    </div>
+    <div class="responsive-marquee">
+      <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={sectionSettings.itemperRow} slidesPerViewTb={sectionSettings.itemperRowTb} slidesPerViewMb={sectionSettings.itemperRowMb} spaceBetween={sectionSettings.itemSpaceBetween} spaceBetweenTb={sectionSettings.itemSpaceBetweenTb} spaceBetweenMb={sectionSettings.itemSpaceBetweenMb} slidesPerViewXL={sectionSettings.itemperRowXL} spaceBetweenXL={sectionSettings.itemSpaceBetweenXL}>
+        {sectionSettings.items.map((item) => (
+          <swiper-slide>
+            <div class="responsive-item">
+              <div class="responsive-item-inner">
+                <IpFrame src={item.video} title={item.title} />
+              </div>
+            </div>
+          </swiper-slide>
+        ))}
+      </Slider>
+    </div>
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <div class="container">
+      <div class="res-list">
+        {sectionSettings.responsiveItems.map((item) => (
+          <div class="res-item">
+            <item.icon />
+            <div class="wrap-info">
+              <h3 class="res-item-title">{item.title}</h3>
+              <p class="res-item-description text-secondary hide-br-mobile" set:html={item.sub}></p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <Spacer space={128} spaceTb={70} spaceMb={50} />
+</section>
+
+<style>
+  .responsive-section{
+    background-color: #090909;
+    position: relative;
+    overflow: hidden;
+    --text: #fff;
+    --hd-badge-text-primary: var(--accent-color);
+    .text-secondary{
+      color: #CCCCCC;
+    }
+  }
+  .responsive-marquee{
+    position: relative;
+    &::before,
+    &::after{
+      position: absolute;
+      content: "";
+      height: 100%;
+      width: 8vw;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(var(--direction,90deg), #090909 0%, rgba(9, 9, 9, 0.8) 50%, rgba(9, 9, 9, 0) 100%);
+      z-index: 10;
+    }
+    &::after{
+      left: unset;
+      right: 0;
+      --direction: -90deg;
+    }
+  }
+  .elip1,.elip2{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60%);
+    width: var(--width,35vw);
+    height: var(--height,35vw);
+    background-color: var(--accent-color);
+    filter: blur(528px);
+    opacity: .4;
+    border-radius: 9999px;
+    pointer-events: none;
+    @media(width < 767px){
+      filter: blur(50px);
+      --width: 80vw;
+      --height: 80vw;
+    }
+  }
+  .elip2{
+    top: unset;
+    bottom: 0;
+    transform: translateX(-50%) translateY(40%);
+  }
+
+  .res-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    @media (width < 991px){
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (width < 767px){
+      grid-template-columns: 1fr;
+    }
+  }
+  .res-item{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+  }
+  .res-item-title{
+    --fs: 16px;
+    --fw: 500;
+    --lh: 1.35;
+    --ls: -3;
+
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    color: var(--text);
+  }
+  .res-item-description{
+    --fs: 14px;
+    --fw: 400;
+    --lh: 1.35;
+    --ls: -3;
+
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    margin-top: 8px;
+  }
+</style>

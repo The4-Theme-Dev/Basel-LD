@@ -2,6 +2,8 @@ import Lenis from "lenis";
 import { register } from "swiper/element/bundle";
 register(); 
 
+
+
 if (!window.__lenis) {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -9,6 +11,7 @@ if (!window.__lenis) {
     duration: 1.1,
     smoothWheel: !reduceMotion,
     syncTouch: false,
+    anchors: true
   });
 
   const raf = (time) => {
