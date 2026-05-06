@@ -1,0 +1,330 @@
+---
+import Heading from "../common/Heading.astro"
+import Spacer from "../common/Spacer.astro"
+import HeadingBadge from "../common/HeadingBadge.astro"
+import { siteConfig } from "../../config/site";
+
+import av1 from '../../assets/icon/reviewer/av1.svg'
+import av2 from '../../assets/icon/reviewer/av2.svg'
+import av3 from '../../assets/icon/reviewer/av3.svg'
+import av4 from '../../assets/icon/reviewer/av4.svg'
+import av5 from '../../assets/icon/reviewer/av5.svg'
+import av6 from '../../assets/icon/reviewer/av6.svg'
+import av7 from '../../assets/icon/reviewer/av7.svg'
+import Slider from "../common/Slider.astro"
+import Button from "../common/Button.astro";
+
+const reviewers = [
+  {
+    name: "Helvetica Design",
+    position: "Verified Customer",
+    avatar: av1
+  },
+  {
+    name: "Nova Market",
+    position: "eCommerce Manager",
+    avatar: av2
+  },
+  {
+    name: "Nova Retail Group",
+    position: "Verified Customer",
+    avatar: av7
+  },
+  {
+    name: "Nibow",
+    position: "Shop Owner",
+    avatar: av3
+  },
+  {
+    name: "Craft Supply Co.",
+    position: "Founder",
+    avatar: av4
+  },
+  {
+    name: "Hassan Online Store",
+    position: "Verified Customer",
+    avatar: av5
+  },
+  {
+    name: "Cynthia's Boutique",
+    position: "Verified Customer",
+    avatar: av6
+  },
+  {
+    name: "Moheeb's Home Decor",
+    position: "Verified Customer",
+    avatar: av4
+  },
+  {
+    name: "Rashid's Tech Accessories",
+    position: "Verified Customer",
+    avatar: av7
+  },
+  {
+    name: "Ahmed's Clothing Store",
+    position: "Verified Customer",
+    avatar: av2
+  }
+]
+
+const sectionSettings = {
+  label: "Loved by Store Owners Worldwide",
+  title: "Real Feedback from Real Customers",
+  sub: `Thousands of businesses trust Basel to build, launch, and grow their online stores<br> with confidence.`,
+
+  items: [
+    [
+      {
+        review: `“Basel is packed with powerful features and incredibly easy to customize. It helped us launch faster than expected — and the support team is outstanding.”`,
+        reviewers: reviewers[1]
+        
+      },
+      {
+        review: `“Great UX out of the box. Our conversion rate improved almost immediately.”`,
+        reviewers: reviewers[2]
+      },
+      {
+        review: `“We\’ve tested several Shopify and WooCommerce themes before switching to Basel, and the difference is clear. The performance is faster, the UX is more polished, and the customization options are far more flexible. What really stands out is how conversion-focused everything feels — from product pages to navigation. It\’s helped us create a much smoother shopping experience overall.”`,
+        reviewers: reviewers[3]
+      },
+      {
+        review: `“From design quality to technical performance, Basel delivers on every level. The mobile experience is especially impressive — fast, intuitive, and optimized for conversions. Since switching, we\’ve seen improvements in engagement, time on site, and overall sales. It\’s a solid investment for any serious eCommerce business.”`,
+        reviewers: reviewers[4]
+      },
+      {
+        review: `“The design quality is top-notch, but what really stands out is the support. Fast, helpful, and always reliable when we need it.”`,
+        reviewers: reviewers[5]
+      },
+      {
+        review: `“We launched our store in just a few days thanks to the demo import and intuitive customization. The customer experience feels premium, and our bounce rate has gone down significantly.”`,
+        reviewers: reviewers[6]
+      },
+      {
+        review: `“Support has been excellent from day one. Quick responses, clear solutions, and always helpful. It\’s rare to find both a great product and great support together.”`,
+        reviewers: reviewers[7]
+      },
+      {
+        review: `“Basel gave us the flexibility to build exactly what we envisioned without touching code. The UI is clean, and performance is noticeably faster compared to other themes we tried.”`,
+        reviewers: reviewers[8]
+      },
+      {
+        review: `“Basel allowed us to completely redesign our store without rebuilding everything from scratch. The demo system, layout options, and built-in features saved us a significant amount of time and development cost. Our team was able to iterate quickly, and the final result looks and performs like a custom-built solution.”`,
+        reviewers: reviewers[9]
+      }
+    ],
+    [
+      
+      {
+        review: `“Great UX out of the box. Our conversion rate improved almost immediately.”`,
+        reviewers: reviewers[2]
+      },
+      {
+        review: `“We\’ve tested several Shopify and WooCommerce themes before switching to Basel, and the difference is clear. The performance is faster, the UX is more polished, and the customization options are far more flexible. What really stands out is how conversion-focused everything feels — from product pages to navigation. It\’s helped us create a much smoother shopping experience overall.”`,
+        reviewers: reviewers[3]
+      },
+      {
+        review: `“From design quality to technical performance, Basel delivers on every level. The mobile experience is especially impressive — fast, intuitive, and optimized for conversions. Since switching, we\’ve seen improvements in engagement, time on site, and overall sales. It\’s a solid investment for any serious eCommerce business.”`,
+        reviewers: reviewers[4]
+      },
+      {
+        review: `“Basel allowed us to completely redesign our store without rebuilding everything from scratch. The demo system, layout options, and built-in features saved us a significant amount of time and development cost. Our team was able to iterate quickly, and the final result looks and performs like a custom-built solution.”`,
+        reviewers: reviewers[9]
+      },
+      {
+        review: `“We launched our store in just a few days thanks to the demo import and intuitive customization. The customer experience feels premium, and our bounce rate has gone down significantly.”`,
+        reviewers: reviewers[6]
+      },
+      {
+        review: `“Support has been excellent from day one. Quick responses, clear solutions, and always helpful. It\’s rare to find both a great product and great support together.”`,
+        reviewers: reviewers[7]
+      },
+      {
+        review: `“Basel gave us the flexibility to build exactly what we envisioned without touching code. The UI is clean, and performance is noticeably faster compared to other themes we tried.”`,
+        reviewers: reviewers[8]
+      },
+    ],
+    [
+      
+      {
+        review: `“Great UX out of the box. Our conversion rate improved almost immediately.”`,
+        reviewers: reviewers[2]
+      },
+      {
+        review: `“Basel is packed with powerful features and incredibly easy to customize. It helped us launch faster than expected — and the support team is outstanding.”`,
+        reviewers: reviewers[1]
+        
+      },
+      {
+        review: `“Support has been excellent from day one. Quick responses, clear solutions, and always helpful. It\’s rare to find both a great product and great support together.”`,
+        reviewers: reviewers[7]
+      },
+      {
+        review: `“We\’ve tested several Shopify and WooCommerce themes before switching to Basel, and the difference is clear. The performance is faster, the UX is more polished, and the customization options are far more flexible. What really stands out is how conversion-focused everything feels — from product pages to navigation. It\’s helped us create a much smoother shopping experience overall.”`,
+        reviewers: reviewers[3]
+      },
+      {
+        review: `“Basel gave us the flexibility to build exactly what we envisioned without touching code. The UI is clean, and performance is noticeably faster compared to other themes we tried.”`,
+        reviewers: reviewers[8]
+      },
+      {
+        review: `“Basel allowed us to completely redesign our store without rebuilding everything from scratch. The demo system, layout options, and built-in features saved us a significant amount of time and development cost. Our team was able to iterate quickly, and the final result looks and performs like a custom-built solution.”`,
+        reviewers: reviewers[9]
+      },
+      {
+        review: `“From design quality to technical performance, Basel delivers on every level. The mobile experience is especially impressive — fast, intuitive, and optimized for conversions. Since switching, we\’ve seen improvements in engagement, time on site, and overall sales. It\’s a solid investment for any serious eCommerce business.”`,
+        reviewers: reviewers[4]
+      },
+      {
+        review: `“The design quality is top-notch, but what really stands out is the support. Fast, helpful, and always reliable when we need it.”`,
+        reviewers: reviewers[5]
+      },
+      {
+        review: `“We launched our store in just a few days thanks to the demo import and intuitive customization. The customer experience feels premium, and our bounce rate has gone down significantly.”`,
+        reviewers: reviewers[6]
+      },
+      
+    ],
+  ],
+
+  itemperRow: "auto",
+  itemperRowTb: "auto",
+  itemperRowMb: 1.2,
+
+  itemSpaceBetween: 32,
+  itemSpaceBetweenTb: 20,
+  itemSpaceBetweenMb: 16,
+
+  buyButton: {
+    label: `Buy Basel Now`,
+    href: siteConfig.buyUrl,
+    variant: "primary",
+  }
+}
+---
+<section id="reviews" class="feedback-section">
+  <Spacer space={128} spaceTb={70} spaceMb={50} />
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-heading text-align-center">
+        <HeadingBadge label={sectionSettings.label} variant="primary" />
+        <Spacer space={24} spaceTb={16} spaceMb={16} />
+        <Heading level={2} textAlign="center" tag="h2">
+          {sectionSettings.title}
+        </Heading>
+        <Spacer space={24} spaceTb={16} spaceMb={16} />
+        <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
+        </p>
+        <Spacer space={48} spaceTb={32} spaceMb={30} />
+      </div>
+      <div class="fb-list">
+        {sectionSettings.items.map((line, index) => (
+          <div class="slide-wrap">
+            <Slider type="marquee" direction="vertical" directionMb="horizontal" reverse={index === 1} autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={sectionSettings.itemperRow} slidesPerViewTb={sectionSettings.itemperRowTb} slidesPerViewMb={sectionSettings.itemperRowMb} spaceBetween={sectionSettings.itemSpaceBetween}>
+              {line.map((item) => (
+                <swiper-slide>
+                  <div class="fb-item">
+                    <div class="fb-item-inner">
+                      <p class="fb-item-review" set:html={item.review}></p>
+                      <div class="reviewers">
+                        <item.reviewers.avatar />
+                        <div class="reviewers-info">
+                          <h3 class="reviewers-name">{item.reviewers.name}</h3>
+                          <p class="reviewers-position text-secondary">{item.reviewers.position}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </swiper-slide>
+              ))}
+            </Slider>
+          </div>
+        ))}
+      </div>
+      <div class="section-footer text-align-center">
+        <Spacer space={48} spaceTb={32} spaceMb={30} />
+        <Button label={sectionSettings.buyButton.label} variant={sectionSettings.buyButton.variant as "primary" | "accent" | "transparent"} href={sectionSettings.buyButton.href} />
+      </div>
+    </div>
+  </div>
+  <Spacer space={128} spaceTb={70} spaceMb={50} />
+</section>
+
+<style>
+  .feedback-section{
+    background-color: #fff;
+  }
+  .fb-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    min-width: 0;
+    position: relative;
+    --item-padding: 32px;
+    --height: 800px;
+
+    .slide-wrap{
+      min-width: 0;
+    }
+
+   
+
+    &::before,
+    &::after{
+      position: absolute;
+      content: "";
+      height: 6vw;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+      z-index: 10;
+      pointer-events: none;
+    }
+    &::after{
+      top:auto;
+      bottom: 0;
+      background: linear-gradient(0deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    }
+    @media (width < 767px){
+      grid-template-columns: 1fr;
+      --height: 600px;
+      gap: 16px;
+      &::before,
+      &::after{
+        display: none;
+      }
+    }
+  }
+  .fb-item{
+    background-color: #fff;
+    border: 1px solid #CCCCCC;
+    border-radius: var(--radius);
+    padding: var(--item-padding);
+    @media (width < 767px){
+      height: 100%;
+    }
+  }
+  .reviewers{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .fb-item-review{
+    @media (width < 767px){
+      font-size: 14px;
+    }
+  }
+  .reviewers-name{
+    font-weight: 500;
+    line-height: 1.3;
+    @media (width < 767px){
+      font-size: 16px;
+    }
+  }
+  .reviewers-position{
+    font-size: 14px;
+    margin-top: 8px;
+  }
+</style>

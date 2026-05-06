@@ -2,6 +2,7 @@
 interface Props {
   type?: "default" | "marquee";
   direction?: "horizontal" | "vertical";
+  directionMb?: "horizontal" | "vertical";
   reverse?: boolean;
   autoplay?: boolean;
   interval?: number;
@@ -21,6 +22,7 @@ interface Props {
 const {
   type = "default",
   direction = "horizontal",
+  directionMb = direction,
   reverse = false,
   autoplay = false,
   interval = 3000,
@@ -42,10 +44,13 @@ const isMarquee = type === "marquee";
 const finalClassName =
   direction === "vertical"
     ? `${className} slider-vertical`.trim()
+    : directionMb === "vertical"
+    ? `${className} slider-vertical-mb`.trim()
     : className;
 
 const config = {
   direction,
+  directionMb,
   loop,
   speed: isMarquee ? speed : 600,
   allowTouchMove: true,
@@ -62,10 +67,10 @@ const config = {
   observer: true,
   observeParents: true,
   breakpoints: {
-    0: { slidesPerView: slidesPerViewMb, spaceBetween: spaceBetweenMb },
-    768: { slidesPerView: slidesPerViewTb, spaceBetween: spaceBetweenTb },
-    1024: { slidesPerView: slidesPerView, spaceBetween: spaceBetween },
-    2000: { slidesPerView: slidesPerViewXL, spaceBetween: spaceBetweenXL }
+    0: { slidesPerView: slidesPerViewMb, spaceBetween: spaceBetweenMb, direction: directionMb },
+    768: { slidesPerView: slidesPerViewTb, spaceBetween: spaceBetweenTb, direction: direction },
+    1024: { slidesPerView: slidesPerView, spaceBetween: spaceBetween, direction: direction },
+    2000: { slidesPerView: slidesPerViewXL, spaceBetween: spaceBetweenXL, direction: direction }
   }
 };
 ---
@@ -87,7 +92,9 @@ const config = {
       --slide-height: var(--height-tb);
     }    
     @media (width < 767px){
-      --slide-height: var(--slide-height-mb);
+      &.slider-vertical-mb{
+        --slide-height: var(--slide-height-mb);
+      }
     }
   }
 

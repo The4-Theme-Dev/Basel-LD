@@ -339,7 +339,7 @@ if (!customElements.get("ethan-lazy-video")) {
             entries.forEach((entry) => {
               if (!this.video) return;
               if (entry.isIntersecting) {
-                this.#safeVideo(true);
+                this.#safeVideo(entry.intersectionRatio);
                 this._io.unobserve(this.video);
               } else {
                 // this.#safeVideo(false);

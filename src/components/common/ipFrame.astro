@@ -25,7 +25,8 @@ const { src, title, poster } = Astro.props;
             muted
             playsinline
             loop
-            preload="none"
+            preload="metadata"
+            autoplay
           >
             <source src={src} type="video/mp4" />
           </video>

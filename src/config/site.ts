@@ -10,6 +10,7 @@ export const siteConfig = {
   moneyPrefix: "$",
   buyUrl: "#",
   openStoreUrl: "#",
+  claimDealUrl: "#",
 
   // layout/theme
   containerWidth: "1350px",
