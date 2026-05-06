@@ -188,7 +188,7 @@ const sectionSettings = {
 
   itemperRow: "auto",
   itemperRowTb: "auto",
-  itemperRowMb: 1.2,
+  itemperRowMb: 0.8,
 
   itemSpaceBetween: 32,
   itemSpaceBetweenTb: 20,
@@ -261,13 +261,9 @@ const sectionSettings = {
     position: relative;
     --item-padding: 32px;
     --height: 800px;
-
     .slide-wrap{
       min-width: 0;
     }
-
-   
-
     &::before,
     &::after{
       position: absolute;
@@ -289,6 +285,7 @@ const sectionSettings = {
     @media (width < 767px){
       grid-template-columns: 1fr;
       --height: 600px;
+      --item-padding: 16px;
       gap: 16px;
       &::before,
       &::after{
@@ -310,6 +307,9 @@ const sectionSettings = {
     align-items: center;
     gap: 20px;
     margin-top: 48px;
+    @media (width < 767px){
+      margin-top: 16px;
+    }
   }
   .fb-item-review{
     @media (width < 767px){
