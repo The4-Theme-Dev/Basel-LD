@@ -92,8 +92,10 @@ const config = {
       --slide-height: var(--slide-height-tb);
     }    
     @media (width < 767px){
-      &.slider-vertical-mb{
-        --slide-height: var(--slide-height-mb);
+      --slide-height: var(--slide-height-mb);
+
+      &:not(.slider-vertical-mb){
+        height: auto !important;
       }
     }
   }

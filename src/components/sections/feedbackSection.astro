@@ -261,6 +261,8 @@ const sectionSettings = {
     position: relative;
     --item-padding: 32px;
     --height: 800px;
+    --height-tb: 600px;
+    --height-mb: 250px;
     .slide-wrap{
       min-width: 0;
     }
@@ -288,7 +290,6 @@ const sectionSettings = {
     }
     @media (width < 767px){
       grid-template-columns: 1fr;
-      --height: 600px;
       --item-padding: 16px;
       gap: 16px;
       &::before,

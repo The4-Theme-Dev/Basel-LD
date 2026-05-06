@@ -12,6 +12,7 @@ export const siteConfig = {
   openStoreUrl: "#",
   claimDealUrl: "#",
   submitYourWebsiteUrl: "#",
+  liveDemoUrl: "#",
 
   // layout/theme
   containerWidth: "1350px",
