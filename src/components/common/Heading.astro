@@ -35,11 +35,14 @@ const Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = tag;
     line-height: var(--lh);
     letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
     color: var(--text);
+    z-index: 1;
+    position: relative;
 
     --fs: 48px;
     --fw: 400;
     --lh: 1.25;
     --ls: -6;
+
   }
 
   .heading--level-1{

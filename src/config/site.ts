@@ -11,6 +11,7 @@ export const siteConfig = {
   buyUrl: "#",
   openStoreUrl: "#",
   claimDealUrl: "#",
+  submitYourWebsiteUrl: "#",
 
   // layout/theme
   containerWidth: "1350px",

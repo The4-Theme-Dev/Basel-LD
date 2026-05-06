@@ -89,7 +89,7 @@ const config = {
     --slide-height-mb: var(--height-mb, var(--height));
     height: var(--slide-height);
     @media (width < 1024px){
-      --slide-height: var(--height-tb);
+      --slide-height: var(--slide-height-tb);
     }    
     @media (width < 767px){
       &.slider-vertical-mb{
@@ -97,7 +97,6 @@ const config = {
       }
     }
   }
-
   .slider-vertical swiper-container {
     height: 100%;
   }

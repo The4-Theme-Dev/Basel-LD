@@ -49,6 +49,8 @@ body {
 }
 .text-secondary{
   color: var(--text-secondary);
+  z-index: 1;
+  position: relative;
 }
 .text-align-left{
   text-align: start;

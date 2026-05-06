@@ -1,0 +1,262 @@
+---
+import Spacer from "../common/Spacer.astro";
+import Heading from "../common/Heading.astro";
+import HeadingBadge from "../common/HeadingBadge.astro";
+
+import Slider from "../common/Slider.astro";
+import IpFrame from "../common/ipFrame.astro";
+
+// icon
+import trust from '../../assets/icon/partnerapp/1.svg';
+import convert from '../../assets/icon/partnerapp/2.svg';
+import any from '../../assets/icon/partnerapp/3.svg';
+
+import img1 from '../../assets/images/sections/partnerapp/1.jpg';
+import img2 from '../../assets/images/sections/partnerapp/2.jpg';
+import img3 from '../../assets/images/sections/partnerapp/3.jpg';
+import ImageRender from "../common/ImageRender.astro";
+import { siteConfig } from "../../config/site";
+import Button from "../common/Button.astro";
+
+const sectionSettings = {
+  label: "Built For Real Businesses",
+  title: "Real Website, Real Results.",
+  sub: `See how store owners, brands, and creatives are using Basel to build<br> stunning, high-performing websites that convert.`,
+
+  itemperRowXl: 5,
+  itemperRow: 4,
+  itemperRowTb: 2.5,
+  itemperRowMb: 1.5,
+  
+  itemSpaceBetween: 16,
+  itemSpaceBetweenTb: 16,
+  itemSpaceBetweenMb: 16,
+  limit: 99,
+
+  items: [
+    { 
+      image: img3,
+      title: "Shopify Store",
+    },
+    {
+      image: img1,
+      title: "Shopify Store",
+    },
+    {
+      image: img2,
+      title: "Shopify Store",
+    },
+    {
+      image: img3,
+      title: "Shopify Store",
+    },
+    {
+      image: img2,
+      title: "Shopify Store",
+    },
+    {
+      image: img1,
+      title: "Shopify Store",
+    },
+  ],
+
+  responsiveItems: [
+    {
+      icon: trust,
+      title: "Trusted by Thousands",
+      sub: `Of store owners worldwide`
+    },
+    {
+      icon: convert,
+      title: "Designed to Convert",
+      sub: `And build for performance`
+    },
+    {
+      icon: any,
+      title: "Made for Any Industry",
+      sub: `And any business model`
+    },
+  ],
+
+  button: {
+    label: "Submit Your Website",
+    href: siteConfig.submitYourWebsiteUrl,
+    variant: "accent",
+  }
+}
+---
+
+<section class="section-bg">
+  <div class="responsive-section">
+
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <div class="elip1"></div>
+    <div class="elip2"></div>
+    <div class="section-inner">
+      <div class="container">
+        <div class="section-heading text-align-center">
+          <HeadingBadge label={sectionSettings.label} variant="primary" />
+          <Spacer space={24} spaceTb={20} spaceMb={18} />
+          <Heading level={2} textAlign="center" tag="h2">
+            {sectionSettings.title}
+          </Heading>
+          <Spacer space={24} spaceTb={20} spaceMb={18} />
+          <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
+          </p>
+          <Spacer space={64} spaceTb={40} spaceMb={30} />
+        </div>
+      </div>
+      <div class="container">
+        <div class="res-list">
+          {sectionSettings.responsiveItems.map((item) => (
+            <div class="res-item">
+              <item.icon />
+              <div class="wrap-info">
+                <h3 class="res-item-title">{item.title}</h3>
+                <p class="res-item-description text-secondary hide-br-mobile" set:html={item.sub}></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Spacer space={64} spaceTb={40} spaceMb={30} />
+      <div class="responsive-marquee">
+        <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={sectionSettings.itemperRow} slidesPerViewTb={sectionSettings.itemperRowTb} slidesPerViewMb={sectionSettings.itemperRowMb} spaceBetween={sectionSettings.itemSpaceBetween} spaceBetweenTb={sectionSettings.itemSpaceBetweenTb} spaceBetweenMb={sectionSettings.itemSpaceBetweenMb} slidesPerViewXL={sectionSettings.itemperRowXl}>
+          {sectionSettings.items.map((item) => (
+            <swiper-slide>
+              <div class="responsive-item">
+                <div class="responsive-item-inner">
+                  <ImageRender src={item.image} alt={item.title} ratio="asos" loading="lazy" />
+                </div>
+              </div>
+            </swiper-slide>
+          ))}
+        </Slider>
+      </div>
+      <Spacer space={64} spaceTb={40} spaceMb={30} />
+      <div class="text-align-center">
+        <Button label={sectionSettings.button.label} variant={sectionSettings.button.variant as "primary" | "accent" | "transparent"} href={sectionSettings.button.href} />
+      </div>
+    </div>
+    <Spacer space={128} spaceTb={70} spaceMb={50} />
+  </div>
+</section>
+
+<style>
+  .section-bg{
+    background-color: #fff;
+  }
+  .responsive-section{
+    background-color: #090909;
+    position: relative;
+    overflow: hidden;
+    width: calc(100vw - 160px);
+    margin-inline: auto;
+    border-radius: var(--radius-xl);
+    --text: #fff;
+    --hd-badge-text-primary: var(--accent-color);
+    .text-secondary{
+      color: #CCCCCC;
+    }
+    @media (width < 1580px){
+      width: calc(100vw - 4vw);
+    }
+  }
+  .responsive-marquee{
+    position: relative;
+    &::before,
+    &::after{
+      position: absolute;
+      content: "";
+      height: 100%;
+      width: 8vw;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(var(--direction,90deg), #090909 0%, rgba(9, 9, 9, 0.8) 50%, rgba(9, 9, 9, 0) 100%);
+      z-index: 10;
+    }
+    &::after{
+      left: unset;
+      right: 0;
+      --direction: -90deg;
+    }
+  }
+  .elip1,.elip2{
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60%);
+    width: var(--width,35vw);
+    height: var(--height,35vw);
+    background-color: var(--accent-color);
+    filter: blur(528px);
+    opacity: .4;
+    border-radius: 9999px;
+    pointer-events: none;
+    @media(width < 767px){
+      filter: blur(50px);
+      --width: 80vw;
+      --height: 80vw;
+    }
+  }
+  .elip2{
+    top: unset;
+    bottom: 0;
+    transform: translateX(-50%) translateY(40%);
+  }
+
+  .res-list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 980px;
+    margin-inline: auto;
+    @media (width < 991px){
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (width < 767px){
+      grid-template-columns: 1fr;
+    }
+  }
+  .res-item{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+  }
+  .res-item-title{
+    --fs: 16px;
+    --fw: 500;
+    --lh: 1.35;
+    --ls: -3;
+
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    color: var(--text);
+
+    @media (width < 991px){
+      --fs: 14px;
+    }
+  }
+  .res-item-description{
+    --fs: 14px;
+    --fw: 400;
+    --lh: 1.35;
+    --ls: -3;
+
+    font-size: var(--fs);
+    font-weight: var(--fw);
+    line-height: var(--lh);
+    letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
+    margin-top: 8px;
+    @media (width < 991px){
+      --fs: 12px;
+    }
+  }
+  img{
+    object-position: top;
+  }
+</style>
