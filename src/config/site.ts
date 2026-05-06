@@ -46,4 +46,11 @@ export const siteConfig = {
   radius: "8px",
   radiusLg: "16px",
   radiusXl: "24px",
+
+  sectionSpace: {
+    dk: 128,
+    dk2: 104,
+    tb: 70,
+    mb: 50,
+  }
 } as const;

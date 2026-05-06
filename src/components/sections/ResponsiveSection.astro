@@ -2,6 +2,7 @@
 import Spacer from "../common/Spacer.astro";
 import Heading from "../common/Heading.astro";
 import HeadingBadge from "../common/HeadingBadge.astro";
+import { siteConfig } from "../../config/site";
 
 import videoTest from "../../assets/videos/test.mp4";
 import Slider from "../common/Slider.astro";
@@ -82,7 +83,7 @@ const sectionSettings = {
 ---
 
 <section class="responsive-section">
-  <Spacer space={128} spaceTb={70} spaceMb={50} />
+  <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
   <div class="elip1"></div>
   <div class="elip2"></div>
   <div class="section-inner">
@@ -112,7 +113,7 @@ const sectionSettings = {
         ))}
       </Slider>
     </div>
-    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
       <div class="res-list">
         {sectionSettings.responsiveItems.map((item) => (
@@ -127,7 +128,7 @@ const sectionSettings = {
       </div>
     </div>
   </div>
-  <Spacer space={128} spaceTb={70} spaceMb={50} />
+  <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
 </section>
 
 <style>

@@ -2,9 +2,7 @@
 import Spacer from "../common/Spacer.astro";
 import Heading from "../common/Heading.astro";
 import HeadingBadge from "../common/HeadingBadge.astro";
-
 import Slider from "../common/Slider.astro";
-import IpFrame from "../common/ipFrame.astro";
 
 // icon
 import trust from '../../assets/icon/partnerapp/1.svg';
@@ -89,7 +87,7 @@ const sectionSettings = {
 <section class="section-bg">
   <div class="responsive-section">
 
-    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="elip1"></div>
     <div class="elip2"></div>
     <div class="section-inner">
@@ -138,8 +136,9 @@ const sectionSettings = {
         <Button label={sectionSettings.button.label} variant={sectionSettings.button.variant as "primary" | "accent" | "transparent"} href={sectionSettings.button.href} />
       </div>
     </div>
-    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
   </div>
+  <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
 </section>
 
 <style>

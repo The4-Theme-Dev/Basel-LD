@@ -27,7 +27,7 @@ const sectionSettings = {
 
 <seciton class="hero-section">
   <div class="section-inner">
-    <Spacer space={104} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
       <div class="hero-content">
         <div class="reng-lef">
@@ -84,7 +84,7 @@ const sectionSettings = {
         </div>
       </div>
     </div>
-    <Spacer space={104} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="hero-marquee-wrap">
       <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={4} slidesPerViewTb={3} slidesPerViewMb={1.4} spaceBetween={20}>
         {marqueItems.map((item,index) => (

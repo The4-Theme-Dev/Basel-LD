@@ -4,6 +4,7 @@ import { demoHeaderItems } from "../../config/data";
 import Heading from "../common/Heading.astro";
 import Slider from "../common/Slider.astro";
 import ImageRender from "../common/ImageRender.astro";
+import { siteConfig } from "../../config/site";
 
 const sectionSettings = {
   headerCount: demoHeaderItems.length,
@@ -27,7 +28,7 @@ const sizes = `(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 50vw`;
 <section class="preview-header">
   <div class="section-inner">
     <div class="container">
-      <Spacer space={128} spaceTb={70} spaceMb={30} />
+      <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
       <div class="preview-header-inner">
         <div class="preview-header-left">
           <h6 class="heading-count text-accent">{sectionSettings.headerCount}+</h6>
@@ -49,7 +50,7 @@ const sizes = `(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 50vw`;
           </Slider>
         </div>
       </div>
-      <Spacer space={128} spaceTb={70} spaceMb={40} />
+      <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     </div>
   </div>
 </section>

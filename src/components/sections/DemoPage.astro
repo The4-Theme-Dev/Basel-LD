@@ -45,7 +45,7 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
 
 <section class="demo-section">
   <div class="section-inner">
-    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
       <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
       <Spacer space={24} spaceTb={20} spaceMb={18} />
@@ -92,7 +92,7 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
         </slot>
       </Tabs>
    
-    <Spacer space={128} spaceTb={70} spaceMb={50} />
+    <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
   </div>
 </section>
 
