@@ -31,6 +31,12 @@ const sectionSettings = {
     <div class="container">
       <div class="hero-content">
         <div class="reng-lef">
+          <div class="hero-card card-seo cml">
+            <div class="hero-card-inner">
+              <p class="count">SEO</p>
+              <p>Optimized</p>            
+            </div>
+          </div>
           <div class="hero-card card-author">
             <div class="hero-card-inner">
               <svg width="29" height="32" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,12 +53,13 @@ const sectionSettings = {
               <p>Made by<br> Power Elite Author</p>            
             </div>
           </div>
-          <div class="hero-card card-sales">
+          <div class="hero-card card-sales cml">
             <div class="hero-card-inner">
               <p class="count">4,500+</p>
               <p>Sales</p>            
             </div>
           </div>
+          
         </div>
         <div class="content text-align-center">
           <HeadingBadge label="Shopify OS 3.0 Ready" variant="primary" />
@@ -75,10 +82,16 @@ const sectionSettings = {
               <p>5.0 Star Rating</p>            
             </div>
           </div>
-          <div class="hero-card card-version">
+          <div class="hero-card card-version cml">
             <div class="hero-card-inner">
               <p class="count">40+</p>
               <p>Versions Included</p>            
+            </div>
+          </div>
+          <div class="hero-card card-sp">
+            <div class="hero-card-inner">
+              <p class="count">24/7</p>
+              <p>Support</p>            
             </div>
           </div>
         </div>
@@ -148,6 +161,17 @@ const sectionSettings = {
       letter-spacing: -1.92px;
       color: var(--count-text);
     }
+    &.card-sp{
+      --count-text: #E48857;
+    }
+    &.card-seo{
+      --ml: 20px;
+      --count-text: #911BE0;
+      min-width: 100px;
+      .count{
+        font-size: clamp(16px, 2vw, 24px);
+      }
+    }
     &.card-version{
       --count-text: #911BE0;
     }
@@ -173,14 +197,8 @@ const sectionSettings = {
     }
   }
   @media (width > 992px){
-    .reng-lef .hero-card:last-child{
-      margin-inline-start: 4rem;
-    }
-    .reng-lef2 .hero-card:first-child{
-      margin-inline-end: 3rem;
-    }
-    .reng-lef2 .hero-card:last-child{
-      margin-inline-start: auto;
+    .cml{
+      margin-inline-start: calc(var(--ml,0px) + 4rem);
     }
   }
   @media (width < 991px){
