@@ -29,6 +29,11 @@ import headerLayout9Image from '../assets/images/header_layout/layout_9.png';
 
 export const demoItems = [
   {
+    title: "Home new fashion",
+    image: homeNewFashionImage,
+    url: "https://basel-v4.myshopify.com/?preview_theme_id=156113928341"
+  },
+  {
     title: "Home default",
     image: homeDefaultImage,
     url: "https://basel-v4.myshopify.com/?preview_theme_id=155805319317&pb=0"
@@ -87,11 +92,6 @@ export const demoItems = [
     title: "Home flat width",
     image: homeFlatWidthImage,
     url: "https://basel-v4.myshopify.com/?preview_theme_id=156217933973"
-  },
-  {
-    title: "Home new fashion",
-    image: homeNewFashionImage,
-    url: "https://basel-v4.myshopify.com/?preview_theme_id=156113928341"
   },
   {
     title: "Home pet",
