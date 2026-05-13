@@ -1,0 +1,155 @@
+---
+import HeadingBadge from "../common/HeadingBadge.astro"
+import Spacer from "../common/Spacer.astro"
+import Heading from "../common/Heading.astro"
+import { siteConfig } from "../../config/site"
+
+import img from '../../assets/images/demos/home_car.png'
+import img2 from '../../assets/images/demos/home_cosmetic.png'
+import img3 from '../../assets/images/demos/home_wine.png'
+import img4 from '../../assets/images/demos/home_dark_verison.png'
+import img5 from '../../assets/images/demos/home_flat_fullwidth.png'
+import img6 from '../../assets/images/demos/home_new_fashion.png'
+import ImageRender from "../common/ImageRender.astro"
+import AccordionGroup from "../common/AccordionGroup.astro"
+import Accordion from "../common/Accordion.astro"
+
+const sectionId = `advanced-${crypto.randomUUID().slice(0, 8)}`
+
+const sectionSettings = {
+  label: "Advanced eCommerce Experience",
+  title: "Built to Power Modern eCommerce",
+  sub: `Basel goes beyond standard WooCommerce functionality with a suite of advanced features<br> designed to improve product discovery, streamline shopping, and increase conversions across your<br> entire store.`,
+
+
+  features: [
+    {
+      title: "Ajax Search",
+      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
+      image: img
+    },
+    {
+      title: "Quick View",
+      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
+      image: img2
+    },
+    {
+      title: "Product Swatches",
+      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
+      image: img3
+    },
+    {
+      title: "Quick Shop",
+      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
+      image: img4
+    },
+    {
+      title: "Ajax Shop",
+      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
+      image: img5
+    },
+    {
+      title: "Categories Menu",
+      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
+      image: img6
+    },
+  ]
+}
+---
+
+<section class="advanced-section">
+  <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
+  <div class="section-inner">
+    <div class="container">
+      <div class="section-heading text-align-center">
+        <HeadingBadge label={sectionSettings.label} variant="primary" />
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <Heading level={2} textAlign="center" tag="h2">
+          {sectionSettings.title}
+        </Heading>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}></p>
+        <Spacer space={48} spaceTb={40} spaceMb={30} />
+      </div>
+      <features-layout>
+        <div class="item">
+          <div class="item-inner">
+            <div class="left">
+              <div class="wrap-content">
+                <AccordionGroup ariaControls={`${sectionId}-content`} interval={11500}>
+                  {sectionSettings.features.map((item,index) => (
+                    <Accordion open={index === 0} attributes={{ 'data-index': String(index) }}>
+                      <h3 slot="title">{item.title}</h3>
+                      <div>
+                        <p set:html={item.sub}></p>
+                      </div>
+                    </Accordion>
+                  ))}
+                </AccordionGroup>
+              </div>
+            </div>
+            <div class="right">
+              <div id={`${sectionId}-content`} class="accordion-wrap">
+                {sectionSettings.features.map((item,index) => (
+                  <div class:list={['content-item', { 'is-active': index === 0 }]}>
+                    <ImageRender src={item.image} alt={item.title} ratio="square" loading="eager" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </features-layout>
+    </div>
+  </div>
+  <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
+</section>
+
+<style>
+  features-layout{
+    display: block;
+    position: relative;
+  }
+  .item-inner{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    @media (width < 767px){
+      grid-template-columns: 1fr;
+    }
+  }
+  .right{
+    position: relative;
+    @media (width < 767px){
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.25;
+    }
+  }
+  .left{
+    z-index: 2;
+  }
+  .content-item{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top:0;
+    pointer-events: none;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+    &.is-active{
+      position: relative;
+      clip-path: inset(0);
+    }
+    img{
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+</style>

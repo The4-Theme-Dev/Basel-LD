@@ -1,7 +1,11 @@
 ---
-
+interface Props {
+  ariaControls?: string;
+  interval?: number
+}
+const { ariaControls = "", interval = 7000 } = Astro.props;
 ---
 
-<ethan-accordion-group id="accordion-group" class="block" data-autoplay="true" data-interval="4000">
+<ethan-accordion-group id="accordion-group" aria-controls={ariaControls} class="block" data-autoplay="true" data-interval={interval}>
   <slot />
 </ethan-accordion-group>

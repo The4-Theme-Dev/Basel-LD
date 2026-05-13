@@ -1,11 +1,12 @@
 ---
 interface Props {
   open?: boolean;
+  attributes?: Record<string, string>;
 }
-const { open = false } = Astro.props;
+const { open = false, attributes = {} } = Astro.props;
 ---
 
-<ethan-accordion class="block" {...(open ? { open: "" } : {})}>
+<ethan-accordion class="block" {...(open ? { open: "" } : {})} {...attributes}>
     <button class="accordion-btn" type="button" aria-expanded="false">
       <slot name="title" >
     </slot>
@@ -48,6 +49,10 @@ const { open = false } = Astro.props;
       --opacity: 1;
       --border-color: var(--border-color-active);
     }
+    @media (width < 767px){
+      --padding: 16px;
+      --radius: 12px;
+    }
   }
   button{
     font-size: var(--btn-fs);
@@ -59,11 +64,21 @@ const { open = false } = Astro.props;
     width: 100%;
     text-align: left;
     border: none;
+    background-color: transparent;
 
     --btn-fs: 24px;
     --btn-fw: 500;
     --btn-lh: 1.3;
     --btn-ls: -3;
+
+    *{
+      pointer-events: none;
+    }
+
+    @media (width < 767px){
+      --btn-fs: 16px;
+
+    }
   }
 
 </style>

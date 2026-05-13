@@ -24,7 +24,7 @@ if (!customElements.get("ethan-accordion")) {
     }
     onResize(){
       if(window.innerWidth > 1025){
-        this.addEventListener('mouseenter', this.onClick.bind(this));
+        // this.addEventListener('mouseenter', this.onClick.bind(this));
       }
     }
     setupEventListeners(){
@@ -36,7 +36,6 @@ if (!customElements.get("ethan-accordion")) {
       window.removeEventListener("resize", this.onResize.bind(this));
     }
     onClick = (event) => {
-
       if(event.target === this && this.open)return;
       const expanded = this.button?.getAttribute("aria-expanded") === "true";
       this.setOpen(!expanded, true);
@@ -89,6 +88,13 @@ if (!customElements.get("ethan-accordion-group")) {
   customElements.define(
     "ethan-accordion-group",
     class extends HTMLElement {
+
+      get ariaControls(){
+        return this.getAttribute("aria-controls") || "";
+      }
+      get currentActive(){
+        return this.querySelector('ethan-accordion[open]');
+      }
       connectedCallback() {
         this.items = Array.from(this.querySelectorAll("ethan-accordion"));
         this.currentIndex = Math.max(0, this.items.findIndex((it) => it.hasAttribute("open")));
@@ -112,6 +118,7 @@ if (!customElements.get("ethan-accordion-group")) {
         this.addEventListener("accordion:open", this.onItemOpenRef);
         this.addEventListener("mouseenter", this.onMouseEnterRef);
         this.addEventListener("mouseleave", this.onMouseLeaveRef);
+        this.addEventListener("click", this.handleClick.bind(this));
 
         this.io = new IntersectionObserver(
           ([entry]) => {
@@ -131,6 +138,7 @@ if (!customElements.get("ethan-accordion-group")) {
         this.removeEventListener("accordion:open", this.onItemOpenRef);
         this.removeEventListener("mouseenter", this.onMouseEnterRef);
         this.removeEventListener("mouseleave", this.onMouseLeaveRef);
+        this.removeEventListener("click", this.handleClick.bind(this));
         this.stopAuto();
         this.io?.disconnect();
       }
@@ -168,6 +176,29 @@ if (!customElements.get("ethan-accordion-group")) {
         const nextItem = this.items[this.currentIndex];
         if (nextItem && typeof nextItem.setOpen === "function") {
           nextItem.setOpen(true, true);
+          this.nextMedia(this.currentIndex);
+        }
+      }
+      nextMedia(index){
+        if(!this.ariaControls) return;
+
+        let mediaContent = Array.from(document.getElementById(this.ariaControls).children || []);
+        if(!mediaContent.length === 0) return;
+        
+        mediaContent.forEach(item => {
+          item.classList.remove('is-active');
+        })
+        mediaContent[index].classList.add('is-active');
+      }
+      handleClick(event){
+        event.preventDefault();
+        let item = event.target.closest('ethan-accordion');
+        console.log(event.target);
+        
+
+        if(item && event.target.tagName == 'BUTTON'){
+          let currentIndex = Number(item.dataset.index);
+          this.nextMedia(currentIndex);
         }
       }
     }
