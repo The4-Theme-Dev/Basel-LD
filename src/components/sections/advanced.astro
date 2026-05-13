@@ -76,7 +76,7 @@ const sectionSettings = {
           <div class="item-inner">
             <div class="left">
               <div class="wrap-content">
-                <AccordionGroup ariaControls={`${sectionId}-content`} interval={11500}>
+                <AccordionGroup ariaControls={`${sectionId}-content`} interval={5000}>
                   {sectionSettings.features.map((item,index) => (
                     <Accordion open={index === 0} attributes={{ 'data-index': String(index) }}>
                       <h3 slot="title">{item.title}</h3>
