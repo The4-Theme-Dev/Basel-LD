@@ -1,6 +1,6 @@
 ---
 import Spacer from "../common/Spacer.astro"
-import { demoItems } from "../../config/data"
+import { shopPages, productPages, otherPages } from "../../config/data"
 import Heading from "../common/Heading.astro"
 import ImageRender from "../common/ImageRender.astro"
 import { siteConfig } from "../../config/site"
@@ -9,7 +9,7 @@ import Tabs from "../common/Tabs.astro"
 
 
 const sectionSettings = {
-  demoCount: demoItems.length,
+  demoCount: shopPages.length + productPages.length + otherPages.length,
   title: "Powerful Inner Pages & Shop Layouts",
   sub: "Everything you need to build a complete, high-performing eCommerce experience<br> — beautifully designed and fully optimized.",
   demoPerRow: 4,
@@ -20,7 +20,7 @@ const sectionSettings = {
   demoSpaceBetweenMb: 16,
   limit: 99,
   sort: "default",
-  imageRatio: "square"
+  imageRatio: "square",
 }
 
 const itemActive = 0;
@@ -28,19 +28,20 @@ const itemActive = 0;
 const tabs = [
   {
     title: "Shop pages",
-    dataDemo: demoItems 
+    dataDemo: shopPages 
   },
   {
     title: "Product pages",
-    dataDemo: demoItems
+    dataDemo: productPages
   },
   {
     title: "Collection pages",
-    dataDemo: demoItems
+    dataDemo: otherPages
   }
 ]
 
-const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, (max-width: 1024px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, calc(${siteConfig.containerWidth} / ${sectionSettings.demoPerRow} - ${sectionSettings.demoSpaceBetween}px * ${sectionSettings.demoPerRow - 1})`;
+//const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, (max-width: 1024px) ${Math.round(100 / sectionSettings.demoPerRow)}vw, calc(${siteConfig.containerWidth} / ${sectionSettings.demoPerRow} - ${sectionSettings.demoSpaceBetween}px * ${sectionSettings.demoPerRow - 1})`;
+const sizes = `(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw`
 ---
 
 <section class="demo-section">
