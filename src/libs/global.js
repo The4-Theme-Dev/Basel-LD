@@ -235,6 +235,7 @@ if (!customElements.get("ethan-slider")) {
         this._onLeave = () => swiper.swiper?.autoplay?.start?.();
 
         Object.assign(swiper, config);
+        this.removeAttribute('no-js');
         swiper.initialize();
 
         if (config.autoplay) {

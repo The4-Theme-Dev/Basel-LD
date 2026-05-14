@@ -73,9 +73,11 @@ const config = {
     2000: { slidesPerView: slidesPerViewXL, spaceBetween: spaceBetweenXL, direction: direction }
   }
 };
+
+const initStyle = `--view-xl: ${slidesPerViewXL};--space-xl: ${spaceBetweenXL}px; --view: ${slidesPerView};--space: ${spaceBetween}px;--view-tb: ${slidesPerViewTb};--space-tb: ${spaceBetweenTb}px;--view-mb: ${slidesPerViewMb};--space-mb: ${spaceBetweenMb}px;`;
 ---
 
-<ethan-slider class={finalClassName} data-config={JSON.stringify(config)}>
+<ethan-slider no-js data-direction={direction} style={initStyle} class={finalClassName} data-config={JSON.stringify(config)}>
   <swiper-container init="false">
     <slot />
   </swiper-container>
@@ -107,6 +109,34 @@ const config = {
   }
   swiper-container::part(wrapper){
     transition-timing-function: linear !important;
+  }
+  ethan-slider{
+    &[no-js]{
+      &[data-direction="horizontal"]{
+        swiper-container{
+          display: grid;
+          grid-template-columns: repeat(50, calc((100% - (var(--sp) * (var(--v) - 1))) / var(--v)));
+          gap: var(--sp);
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+
+          --v: var(--view-mb);
+          --sp: var(--space-mb);
+          @media (width > 767px){
+            --v: var(--view-tb);
+            --sp: var(--space-tb);
+          }
+          @media (width > 1150px){
+            --v: var(--view);
+            --sp: var(--space);
+          }
+          @media (width > 1800px){
+            --v: var(--view-xl);
+            --sp: var(--space-xl);
+          }
+        }
+      }
+    }
   }
 </style>
 <!-- 
