@@ -136,10 +136,10 @@ const sectionSettings = {
   <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
   <div class="section-inner">
     <div class="container">
-      <div class="section-heading text-align-center">
-        <HeadingBadge label={sectionSettings.label} variant="primary" />
+      <div class="section-heading text-align-center" data-gsap-heading>
+        <HeadingBadge label={sectionSettings.label} variant="primary" reveal={false} />
         <Spacer space={24} spaceTb={20} spaceMb={18} />
-        <Heading level={2} textAlign="center" tag="h2">
+        <Heading level={2} textAlign="center" tag="h2" reveal={false}>
           {sectionSettings.title}
         </Heading>
         <Spacer space={24} spaceTb={20} spaceMb={18} />
@@ -147,7 +147,7 @@ const sectionSettings = {
         </p>
         <Spacer space={64} spaceTb={40} spaceMb={30} />
       </div>
-      <reveal-grid class="features-list" style={`--per-row: ${sectionSettings.itemPerRow}; --per-row-tb: ${sectionSettings.itemPerRowTb}; --per-row-mb: ${sectionSettings.itemPerRowMb}; --space-between: ${sectionSettings.itemSpaceBetween}px; --space-between-tb: ${sectionSettings.itemSpaceBetweenTb}px; --space-between-mb: ${sectionSettings.itemSpaceBetweenMb}px;`}>
+      <reveal-grid class="features-list" data-gsap-stagger="0.06" style={`--per-row: ${sectionSettings.itemPerRow}; --per-row-tb: ${sectionSettings.itemPerRowTb}; --per-row-mb: ${sectionSettings.itemPerRowMb}; --space-between: ${sectionSettings.itemSpaceBetween}px; --space-between-tb: ${sectionSettings.itemSpaceBetweenTb}px; --space-between-mb: ${sectionSettings.itemSpaceBetweenMb}px;`}>
         {sectionSettings.features.slice(0, sectionSettings.limit).map((feature) => (
           <div class="feature-item">
             <div class="feature-item-inner text-align-center">

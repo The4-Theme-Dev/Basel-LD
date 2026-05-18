@@ -6,8 +6,9 @@ interface Props {
   tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   hideBr?: Boolean;
   textAlign?: "left" | "center" | "right";
+  reveal?: boolean
 }
-const { level = 1, text = "", variant = "primary", tag = "h2", hideBr = true, textAlign = "left" } = Astro.props;
+const { level = 1, text = "", variant = "primary", tag = "h2", hideBr = true, textAlign = "left", reveal = true } = Astro.props;
 
 const className = [
   "heading",
@@ -22,9 +23,16 @@ const className = [
 
 const Tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = tag;
 
+const gsapY = level === 1 ? 32 : 40;
+const gsapDuration = level === 1 ? 0.75 : 0.85;
 ---
 
-<Tag class={className}>
+<Tag 
+  class={className}
+  data-gsap-reveal={reveal ? "" : undefined}
+  data-gsap-y={reveal ? gsapY : undefined}
+  data-gsap-duration={reveal ? gsapDuration : undefined}
+  >
   <slot>{text}</slot>
 </Tag>
 

@@ -143,10 +143,10 @@ const sectionSettings = {
   <div class="section-inner">
     <div class="container">
       <div class="wrap">
-        <div class="wrap-info">
-          <HeadingBadge label={sectionSettings.label} variant="primary" />
+        <div class="wrap-info" data-gsap-heading>
+          <HeadingBadge label={sectionSettings.label} variant="primary" reveal={false} />
           <Spacer space={24} spaceTb={20} spaceMb={18} />
-          <Heading level={2} textAlign="left" tag="h2">
+          <Heading level={2} textAlign="left" tag="h2" reveal={false}>
             <p set:html={sectionSettings.title}></p>
           </Heading>
           <Spacer space={24} spaceTb={20} spaceMb={18} />

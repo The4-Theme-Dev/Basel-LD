@@ -37,13 +37,15 @@ const sectionSettings = {
   <div class="section-inner">
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container hide-br-mobile">
-      <Heading level={2} textAlign="center" tag="h2">
-        <span set:html={sectionSettings.title}></span>
-      </Heading>
-      <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <p class="text-align-center text-secondary" set:html={sectionSettings.sub}></p>
-      <Spacer space={48} spaceTb={36} spaceMb={30} />
-      <div class="reason-list">
+      <div class="section-heading text-align-center" data-gsap-heading>
+        <Heading level={2} textAlign="center" tag="h2" reveal={false}>
+          <span set:html={sectionSettings.title}></span>
+        </Heading>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <p class="text-align-center text-secondary" set:html={sectionSettings.sub}></p>
+        <Spacer space={48} spaceTb={36} spaceMb={30} />
+      </div>
+      <div class="reason-list" data-gsap-stagger="0.12">
         {reasons.map(({title, description, Icon}) => (
           <div class="reason-item">
             <Icon />

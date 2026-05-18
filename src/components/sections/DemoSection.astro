@@ -27,16 +27,18 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
   <div class="section-inner">
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
-      <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
-      <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <Heading level={2} textAlign="center" tag="h2">
-        {sectionSettings.title}
-      </Heading>
-      <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
-      </p>
-      <Spacer space={48} spaceTb={36} spaceMb={30} />
-      <ethan-demos style={`--per-row: ${sectionSettings.demoPerRow}; --per-row-tb: ${sectionSettings.demoPerRowTb}; --per-row-mb: ${sectionSettings.demoPerRowMb}; --space-between: ${sectionSettings.demoSpaceBetween}px; --space-between-tb: ${sectionSettings.demoSpaceBetweenTb}px; --space-between-mb: ${sectionSettings.demoSpaceBetweenMb}px;`}>
+      <div class="section-heading text-align-center" data-gsap-heading>
+        <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <Heading level={2} textAlign="center" tag="h2" reveal={false}>
+          {sectionSettings.title}
+        </Heading>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
+        </p>
+        <Spacer space={48} spaceTb={36} spaceMb={30} />
+      </div>
+      <ethan-demos data-gsap-stagger="0.08" style={`--per-row: ${sectionSettings.demoPerRow}; --per-row-tb: ${sectionSettings.demoPerRowTb}; --per-row-mb: ${sectionSettings.demoPerRowMb}; --space-between: ${sectionSettings.demoSpaceBetween}px; --space-between-tb: ${sectionSettings.demoSpaceBetweenTb}px; --space-between-mb: ${sectionSettings.demoSpaceBetweenMb}px;`}>
         {demoItems.slice(0, sectionSettings.limit).map((demo,index) => (
           <div class="demo-item">
             <div class="demo-item-inner">

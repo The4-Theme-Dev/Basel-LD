@@ -48,15 +48,17 @@ const sizes = `(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw`
   <div class="section-inner">
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
-      <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
-      <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <Heading level={2} textAlign="center" tag="h2">
-        {sectionSettings.title}
-      </Heading>
-      <Spacer space={24} spaceTb={20} spaceMb={18} />
-      <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
-      </p>
-      <Spacer space={48} spaceTb={36} spaceMb={30} />
+      <div class="section-heading text-align-center" data-gsap-heading>
+        <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <Heading level={2} textAlign="center" tag="h2" reveal={false}>
+          {sectionSettings.title}
+        </Heading>
+        <Spacer space={24} spaceTb={20} spaceMb={18} />
+        <p class="text-align-center text-secondary hide-br-mobile" set:html={sectionSettings.sub}>
+        </p>
+        <Spacer space={48} spaceTb={36} spaceMb={30} />
+      </div>
     </div>
       <Tabs>
         <slot slot="tabs-list">

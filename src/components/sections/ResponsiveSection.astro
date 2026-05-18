@@ -88,10 +88,10 @@ const sectionSettings = {
   <div class="elip2"></div>
   <div class="section-inner">
     <div class="container">
-      <div class="section-heading text-align-center">
-        <HeadingBadge label={sectionSettings.label} variant="primary" />
+      <div class="section-heading text-align-center" data-gsap-heading>
+        <HeadingBadge label={sectionSettings.label} variant="primary" reveal={false} />
         <Spacer space={24} spaceTb={20} spaceMb={18} />
-        <Heading level={2} textAlign="center" tag="h2">
+        <Heading level={2} textAlign="center" tag="h2" reveal={false}>
           {sectionSettings.title}
         </Heading>
         <Spacer space={24} spaceTb={20} spaceMb={18} />
@@ -115,7 +115,7 @@ const sectionSettings = {
     </div>
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
-      <div class="res-list">
+      <div class="res-list" data-gsap-stagger="0.1">
         {sectionSettings.responsiveItems.map((item) => (
           <div class="res-item">
             <item.icon />

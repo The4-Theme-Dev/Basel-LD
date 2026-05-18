@@ -62,16 +62,20 @@ const sectionSettings = {
           
         </div>
         <div class="content text-align-center">
-          <HeadingBadge label="Shopify OS 3.0 Ready" variant="primary" />
-          <Spacer space={24} spaceTb={20} spaceMb={15} />
-          <Heading level={1} textAlign="center" tag="h1">
-            <span set:html={sectionSettings.title}></span>
-          </Heading>
-          <Spacer space={24} spaceTb={20} spaceMb={15} />
-          <p class="hide-br-mobile text-align-center" set:html={sectionSettings.sub}></p>
+          <div class="content-heading" data-gsap-heading data-gsap-start="top 90%">
+            <HeadingBadge label="Shopify OS 3.0 Ready" variant="primary" reveal={false} />
+            <Spacer space={24} spaceTb={20} spaceMb={15} />
+            <Heading level={1} textAlign="center" tag="h1" reveal={false}>
+              <span set:html={sectionSettings.title}></span>
+            </Heading>
+            <Spacer space={24} spaceTb={20} spaceMb={15} />
+            <p class="hide-br-mobile text-align-center" set:html={sectionSettings.sub}></p>
+          </div>
           <Spacer space={48} spaceTb={36} spaceMb={28} />
-          <Button label="Open Store Free" variant="primary" href={siteConfig.openStoreUrl} />
-          <Button label={buyNow} variant="transparent" href={siteConfig.buyUrl} />
+          <div class="content-actions">
+            <Button label="Open Store Free" variant="primary" href={siteConfig.openStoreUrl} reveal revealStart="top 90%" />
+            <Button label={buyNow} variant="transparent" href={siteConfig.buyUrl} reveal revealDelay={120} revealStart="top 90%" />
+          </div>
         </div>
         <div class="reng-lef2">
           <div class="hero-card card-rating">

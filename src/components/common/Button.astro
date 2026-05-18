@@ -7,6 +7,11 @@ interface Props {
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
   ariaLabel?: string;
+  reveal?: boolean;
+  revealDelay?: number;
+  revealY?: number;
+  revealDuration?: number;
+  revealStart?: string;
 }
 
 const {
@@ -17,6 +22,11 @@ const {
   disabled = false,
   type = "button",
   ariaLabel = label,
+  reveal = false,
+  revealDelay = 0,
+  revealY = 20,
+  revealDuration = 0.65,
+  revealStart,
 } = Astro.props;
 
 const className = [
@@ -27,17 +37,27 @@ const className = [
 ]
   .filter(Boolean)
   .join(" ");
+
+const gsapAttrs = reveal
+  ? {
+      "data-gsap-reveal": true,
+      "data-gsap-y": revealY,
+      "data-gsap-delay": revealDelay,
+      "data-gsap-duration": revealDuration,
+      ...(revealStart ? { "data-gsap-start": revealStart } : {}),
+    }
+  : {};
 ---
 
 {
   href ? (
     disabled ? (
-      <span class={className} aria-disabled="true" aria-label={ariaLabel}>{label}</span>
+      <span class={className} aria-disabled="true" aria-label={ariaLabel} {...gsapAttrs}>{label}</span>
     ) : (
-      <a href={href} class={className} aria-label={ariaLabel}>{label}</a>
+      <a href={href} class={className} aria-label={ariaLabel} {...gsapAttrs}>{label}</a>
     )
   ) : (
-    <button type={type} class={className} disabled={disabled} aria-label={ariaLabel}>
+    <button type={type} class={className} disabled={disabled} aria-label={ariaLabel} {...gsapAttrs}>
       {label}
     </button>
   )

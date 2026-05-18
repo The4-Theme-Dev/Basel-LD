@@ -2,8 +2,9 @@
 interface Props {
   label: string;
   variant?: "primary" | "accent";
+  reveal?: boolean
 }
-const { label, variant = "primary" } = Astro.props;
+const { label, variant = "primary", reveal = true } = Astro.props;
 
 const className = [
   "heading-badge",
@@ -14,7 +15,14 @@ const className = [
 
 ---
 
-<div class={className}>{label}</div>
+<div 
+  class={className}
+  data-gsap-reveal={reveal ? "" : undefined}
+  data-gsap-y={reveal ? "16" : undefined}
+  data-gsap-duration={reveal ? "0.55" : undefined}
+>
+{label}
+</div>
 
 <style>
   .heading-badge{
