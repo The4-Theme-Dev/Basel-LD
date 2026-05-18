@@ -1,5 +1,11 @@
+/** Production URL — set PUBLIC_SITE_URL in .env (must be https://) */
+const siteUrl =
+  import.meta.env.SITE ||
+  import.meta.env.PUBLIC_SITE_URL ||
+  "https://basel.luxuchi.com";
+
 export const siteConfig = {
-  siteUrl: "https://yourdomain.com",
+  siteUrl,
   siteName: "Basel",
   author: "The4 Studio",
   locale: "en_US",

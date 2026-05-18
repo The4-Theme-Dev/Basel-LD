@@ -84,7 +84,7 @@ const sizes = `(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw`
                         aria-label={`View ${demo.title} demo`}
                       >
                         <span class="demo-img block">
-                          <ImageRender src={demo.image} alt="" ratio={sectionSettings.imageRatio as any} sizes={sizes} />
+                          <ImageRender src={demo.image} alt={`${demo.title} page preview`} ratio={sectionSettings.imageRatio as any} sizes={sizes} />
                         </span>
                         <span class="demo-item-title flex text-align-left">
                           {demo.title}

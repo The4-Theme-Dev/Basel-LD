@@ -50,7 +50,7 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
                 aria-label={`View ${demo.title} demo`}
               >
                 <span class="demo-img block">
-                  <ImageRender src={demo.image} alt="" ratio="asos" sizes={sizes} />
+                  <ImageRender src={demo.image} alt={`${demo.title} demo preview`} ratio="asos" sizes={sizes} />
                 </span>
                 <span class="demo-item-title block text-align-center">{demo.title}</span>
               </a>
