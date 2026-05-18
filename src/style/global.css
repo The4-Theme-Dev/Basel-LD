@@ -181,6 +181,7 @@ body {
 
 /* section css */
 .heading-count{
+  margin: 0;
   --fs: 80px;
   --fw: 400;
   --lh: 1.1;

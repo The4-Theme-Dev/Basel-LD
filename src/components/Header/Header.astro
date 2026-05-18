@@ -36,8 +36,8 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
   <div class="container">
     <div class="header-inner">
       <div class="logo-wrap">
-        <a href="/" class="header-logo">
-          <img src="/logo.svg" alt="Basel - Shopify Themes Premium" />
+        <a href="/" class="header-logo" aria-label="Basel home">
+          <img src="/logo.svg" alt="" width="120" height="32" />
         </a>
       </div>
       <div class="nav-wrap hidden-mobile">
@@ -52,9 +52,9 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
       <div class="action-wrap hidden-mobile">
         <Button label={buyLabel} variant="accent" href={siteConfig.buyUrl} />
       </div>
-      <menu-mobile class="hidden-desktop">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path></svg>
-      </menu-mobile>
+      <button type="button" class="menu-mobile hidden-desktop" aria-label="Open navigation menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path></svg>
+      </button>
     </div>
   </div>
 </ethan-header>
@@ -78,9 +78,14 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
     padding-block: 12px;
     @media (width < 992px){
       grid-template-columns: 1fr auto;
-      menu-mobile{
+      .menu-mobile{
         width: fit-content;
         display: inline-flex;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
       }
     }
   }

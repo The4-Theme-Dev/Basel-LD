@@ -147,7 +147,7 @@ const sectionSettings = {
           <HeadingBadge label={sectionSettings.label} variant="primary" reveal={false} />
           <Spacer space={24} spaceTb={20} spaceMb={18} />
           <Heading level={2} textAlign="left" tag="h2" reveal={false}>
-            <p set:html={sectionSettings.title}></p>
+            <span set:html={sectionSettings.title}></span>
           </Heading>
           <Spacer space={24} spaceTb={20} spaceMb={18} />
           <p class="text-secondary hide-br-mobile" set:html={sectionSettings.sub}></p>
@@ -167,7 +167,7 @@ const sectionSettings = {
                     <div class="wrap-item-card">
                       <item.icon/>
                       <div class="info">
-                        <h6 class="title">{item.title}</h6>
+                        <h3 class="title">{item.title}</h3>
                         <p class="sub text-secondary" set:html={item.sub}></p>
                       </div>
                     </div>

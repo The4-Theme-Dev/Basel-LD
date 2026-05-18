@@ -14,6 +14,7 @@ interface Props {
   class?: string;
   ratio?: "adapt-image" | "3-2" | "asos" | "portrait" | "square" | "4-3" | "landscape";
   href?: string;
+  linkLabel?: string;
 }
 
 const {
@@ -28,7 +29,10 @@ const {
   class: className = "",
   ratio = "adapt-image",
   href = "",
+  linkLabel = "",
 } = Astro.props;
+
+const anchorLabel = linkLabel || alt;
 
 function parseRatio(value: string | number): number | null {
   if (typeof value === "number") return value > 0 ? value : null;
@@ -45,7 +49,7 @@ const finalRatio = ratio === "adapt-image" ? autoRatio : (parseRatio(ratio) ?? a
 ---
 
 {href ? (
-  <a href={href} class={`image-render-container ${className} ratio-${ratio}`} >
+  <a href={href} class={`image-render-container ${className} ratio-${ratio}`} aria-label={anchorLabel}>
     <div class="ratio" style={ratio === "adapt-image" ? `--aspect-ratioapt: ${finalRatio};` : ""}>
       <Image
         src={src}

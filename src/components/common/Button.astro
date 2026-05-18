@@ -54,7 +54,7 @@ const gsapAttrs = reveal
     disabled ? (
       <span class={className} aria-disabled="true" aria-label={ariaLabel} {...gsapAttrs}>{label}</span>
     ) : (
-      <a href={href} class={className} aria-label={ariaLabel} {...gsapAttrs}>{label}</a>
+      <a href={href} class={className} aria-label={ariaLabel} {...gsapAttrs} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>{label}</a>
     )
   ) : (
     <button type={type} class={className} disabled={disabled} aria-label={ariaLabel} {...gsapAttrs}>

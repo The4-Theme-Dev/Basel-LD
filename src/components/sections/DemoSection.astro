@@ -28,7 +28,7 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
       <div class="section-heading text-align-center" data-gsap-heading>
-        <h6 class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</h6>
+        <p class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</p>
         <Spacer space={24} spaceTb={20} spaceMb={18} />
         <Heading level={2} textAlign="center" tag="h2" reveal={false}>
           {sectionSettings.title}
@@ -42,10 +42,18 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
         {demoItems.slice(0, sectionSettings.limit).map((demo,index) => (
           <div class="demo-item">
             <div class="demo-item-inner">
-              <a href={demo.url} target="_blank" class="demo-img block">
-                <ImageRender src={demo.image} alt={demo.title} ratio="asos" sizes={sizes} />
+              <a
+                href={demo.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="demo-item-link block"
+                aria-label={`View ${demo.title} demo`}
+              >
+                <span class="demo-img block">
+                  <ImageRender src={demo.image} alt="" ratio="asos" sizes={sizes} />
+                </span>
+                <span class="demo-item-title block text-align-center">{demo.title}</span>
               </a>
-              <a href={demo.url} target="_blank" class="demo-item-title block text-align-center">{demo.title}</a>
             </div>
           </div>
         ))}
@@ -84,6 +92,10 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
     img{
       object-position: top;
     }
+  }
+  .demo-item-link{
+    color: inherit;
+    text-decoration: none;
   }
   .demo-item-title{
     --fs: 20px;
