@@ -65,6 +65,7 @@ const { sectionId=`tabs-${crypto.randomUUID().slice(0, 8)}`, space = 48, spaceTb
     transition: background-color .3s ease, color .3s ease;
     z-index: 2;
     white-space: nowrap;
+    
 
     &:focus-visible
     {
@@ -82,6 +83,9 @@ const { sectionId=`tabs-${crypto.randomUUID().slice(0, 8)}`, space = 48, spaceTb
       &[aria-selected="true"]{
         background-color: var(--accent-color);
       }
+    }
+    @media (width < 767px){
+      --fs: 14px;
     }
   }
   @media (max-width: 1024px){
