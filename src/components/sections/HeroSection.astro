@@ -55,7 +55,7 @@ const sectionSettings = {
           </div>
           <div class="hero-card card-sales cml float-animation">
             <div class="hero-card-inner">
-              <p class="count">4,500+</p>
+              <ethan-counter class="count" value={4500} suffix="+" format="locale" duration="2200"></ethan-counter>
               <p>Sales</p>            
             </div>
           </div>
@@ -88,13 +88,13 @@ const sectionSettings = {
           </div>
           <div class="hero-card card-version cml float-animation">
             <div class="hero-card-inner">
-              <p class="count">40+</p>
+              <ethan-counter class="count" value={40} suffix="+"></ethan-counter>
               <p>Versions Included</p>            
             </div>
           </div>
           <div class="hero-card card-sp float-animation">
             <div class="hero-card-inner">
-              <p class="count">24/7</p>
+              <ethan-counter class="count" value={24} suffix="/7" duration="1200"></ethan-counter>
               <p>Support</p>            
             </div>
           </div>
@@ -106,7 +106,9 @@ const sectionSettings = {
       <Slider type="marquee" autoplay={true} interval={0} speed={7000} loop={true} slidesPerView={4} slidesPerViewTb={3} slidesPerViewMb={1.4} spaceBetween={20}>
         {marqueItems.map((item,index) => (
           <swiper-slide>
-            <ImageRender src={item.image} alt={item.title} ratio="square" loading={index < 5 ? "eager" : "lazy"} sizes="(max-width: 767px) 50vw, (max-width: 1024px) 33vw, calc(100vw / 4 - 60px)" />
+            <div class="wrap">
+              <ImageRender src={item.image} alt={item.title} ratio="square" loading={index < 5 ? "eager" : "lazy"} sizes="(max-width: 767px) 50vw, (max-width: 1024px) 33vw, calc(100vw / 4 - 60px)" />
+            </div>
           </swiper-slide>
         ))}
       </Slider>
@@ -115,6 +117,10 @@ const sectionSettings = {
 </seciton>
 
 <style>
+  .wrap{
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
   .hero-marquee-wrap{
     
     position: relative;

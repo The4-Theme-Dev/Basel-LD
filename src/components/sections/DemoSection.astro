@@ -10,7 +10,7 @@ const sectionSettings = {
   demoCount: demoItems.length,
   title: "High-Quality Demos",
   sub: "Using Shopify 2.0 with Section ready, a lot of theme settings and options<br/> you are able to create heavy store that looks perfect on any screen resolution.",
-  demoPerRow: 4,
+  demoPerRow: 3,
   demoPerRowTb: 3,
   demoPerRowMb: 2,
   demoSpaceBetween: 24,
@@ -28,7 +28,11 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
       <div class="section-heading text-align-center" data-gsap-heading>
-        <p class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</p>
+        <ethan-counter
+          class="heading-count text-accent text-align-center"
+          value={sectionSettings.demoCount}
+          suffix="+"
+        ></ethan-counter>
         <Spacer space={24} spaceTb={20} spaceMb={18} />
         <Heading level={2} textAlign="center" tag="h2" reveal={false}>
           {sectionSettings.title}
@@ -91,7 +95,14 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
     overflow: hidden;
     img{
       object-position: top;
+      transition: all 2s linear;
     }
+    &:hover{
+      img{
+        object-position: bottom;
+      }
+    }
+
   }
   .demo-item-link{
     color: inherit;
@@ -112,7 +123,7 @@ const sizes = `(max-width: 767px) ${Math.round(100 / sectionSettings.demoPerRow)
     transition: color .3s ease, opacity .3s ease;
     padding-top: 24px;
     padding-bottom: 12px;
-
+    text-transform: capitalize;
     &:hover{
       color: var(--accent-color);
     }

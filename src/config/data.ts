@@ -122,7 +122,7 @@ export const demoItems = [
     url: "https://basel-v4.myshopify.com/?preview_theme_id=156620161173"
   },
   {
-    title: "Home flat width",
+    title: "Home flat full-width",
     image: homeFlatWidthImage,
     url: "https://basel-v4.myshopify.com/?preview_theme_id=156217933973"
   },
@@ -274,7 +274,7 @@ export const productPages = [
     image: prSwatchSimpleImage,
   },
   {
-    title: "Back stock",
+    title: "Back in stock",
     url: "https://basel-v4.myshopify.com/products/jhecked-flannel-shirt?preview_theme_id=",
     image: prBackStock,
   },

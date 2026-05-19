@@ -180,6 +180,11 @@ body {
 
 
 /* section css */
+ethan-counter.heading-count,
+ethan-counter.count {
+  display: block;
+}
+
 .heading-count{
   margin: 0;
   --fs: 80px;

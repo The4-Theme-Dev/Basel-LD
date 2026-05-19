@@ -35,7 +35,7 @@ const tabs = [
     dataDemo: productPages
   },
   {
-    title: "Collection pages",
+    title: "Other pages",
     dataDemo: otherPages
   }
 ]
@@ -49,7 +49,11 @@ const sizes = `(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw`
     <Spacer space={siteConfig.sectionSpace.dk} spaceTb={siteConfig.sectionSpace.tb} spaceMb={siteConfig.sectionSpace.mb} />
     <div class="container">
       <div class="section-heading text-align-center" data-gsap-heading>
-        <p class="heading-count text-accent text-align-center">{sectionSettings.demoCount}+</p>
+        <ethan-counter
+          class="heading-count text-accent text-align-center"
+          value={sectionSettings.demoCount}
+          suffix="+"
+        ></ethan-counter>
         <Spacer space={24} spaceTb={20} spaceMb={18} />
         <Heading level={2} textAlign="center" tag="h2" reveal={false}>
           {sectionSettings.title}
