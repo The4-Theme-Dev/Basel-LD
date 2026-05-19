@@ -4,7 +4,6 @@ import Heading from "../common/Heading.astro";
 import HeadingBadge from "../common/HeadingBadge.astro";
 import { siteConfig } from "../../config/site";
 
-import videoTest from "../../assets/videos/test.mp4";
 import Slider from "../common/Slider.astro";
 import IpFrame from "../common/ipFrame.astro";
 
@@ -13,6 +12,16 @@ import mb from '../../assets/icon/responsive/1.svg';
 import retina from '../../assets/icon/responsive/2.svg';
 import touch from '../../assets/icon/responsive/3.svg';
 import fast from '../../assets/icon/responsive/4.svg';
+
+// video
+import article from '../../assets/videos/articlepage.mp4';
+import blog from '../../assets/videos/blogpage.mp4';
+import cartdrawer from '../../assets/videos/cartdrawer.mp4';
+import cartpage from '../../assets/videos/cartpage.mp4';
+import homepage from '../../assets/videos/homepage.mp4';
+import menumobile from '../../assets/videos/menumobile.mp4';
+import product from '../../assets/videos/productpage.mp4';
+import searchdrawer from '../../assets/videos/searchdrawer.mp4';
 
 const sectionSettings = {
   label: "General Features List",
@@ -32,28 +41,36 @@ const sectionSettings = {
 
   items: [
     {
-      video: videoTest,
-      title: "Blog",
+      video: blog,
+      title: "Blog Page",
     },
     {
-      video: videoTest,
-      title: "Search Results",
+      video: searchdrawer,
+      title: "Search Drawer",
     },
     {
-      video: videoTest,
-      title: "Shop page",
+      video: article,
+      title: "Article Page",
     },
     {
-      video: videoTest,
+      video: homepage,
       title: "Home page",
     },
     {
-      video: videoTest,
-      title: "Blog",
+      video: cartdrawer,
+      title: "Cart Drawer",
     },
     {
-      video: videoTest,
-      title: "Article",
+      video: cartpage,
+      title: "Cart Page",
+    },
+    {
+      video: menumobile,
+      title: "Menu Mobile",
+    },
+    {
+      video: product,
+      title: "Product Page",
     },
   ],
 
@@ -226,5 +243,9 @@ const sectionSettings = {
     line-height: var(--lh);
     letter-spacing: calc(var(--fs) * ( var(--ls) / 100));
     margin-top: 8px;
+  }
+  /* Video nằm trong IpFrame (scoped riêng) — cần :global để áp dụng */
+  .responsive-marquee :global(video) {
+    object-position: top;
   }
 </style>
