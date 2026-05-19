@@ -33,85 +33,358 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
 ---
 
 <ethan-header class="block">
-  <div class="container">
-    <div class="header-inner">
-      <div class="logo-wrap">
+  <div class="header-bar">
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo-wrap">
+          <a href="/" class="header-logo" aria-label="Basel home">
+            <img src="/logo.svg" alt="Basel — Shopify Themes Premium" width="120" height="32" />
+          </a>
+        </div>
+        <nav class="nav-wrap hidden-mobile" aria-label="Main navigation">
+          <ul class="nav-list">
+            {menu.map((item, index) => (
+              <li class="nav-item" id={item.id + index}>
+                <a href={item.href} class="nav-link">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div class="action-wrap hidden-mobile">
+          <Button label={buyLabel} variant="accent" href={siteConfig.buyUrl} />
+        </div>
+        <button
+          type="button"
+          class="menu-mobile hidden-desktop"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="nav-drawer"
+        >
+          <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path>
+          </svg>
+          <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="nav-drawer" class="nav-drawer hidden-desktop" hidden aria-hidden="true">
+    <button type="button" class="nav-drawer-overlay" data-drawer-close aria-label="Close navigation menu"></button>
+    <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="-1">
+      <div class="nav-drawer-head">
         <a href="/" class="header-logo" aria-label="Basel home">
           <img src="/logo.svg" alt="Basel — Shopify Themes Premium" width="120" height="32" />
         </a>
+        <button type="button" class="nav-drawer-close" data-drawer-close aria-label="Close navigation menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"></path>
+          </svg>
+        </button>
       </div>
-      <div class="nav-wrap hidden-mobile">
-        <ul class="nav-list">
-          {menu.map((item,index) => (
-            <li class="nav-item" id={item.id + index}>
-              <a href={item.href} class="nav-link">{item.label}</a>
+      <nav class="nav-drawer-nav" aria-label="Mobile navigation">
+        <ul class="nav-drawer-list">
+          {menu.map((item, index) => (
+            <li class="nav-drawer-item" id={`drawer-${item.id}${index}`}>
+              <a href={item.href} class="nav-drawer-link">{item.label}</a>
             </li>
           ))}
         </ul>
+      </nav>
+      <div class="nav-drawer-action">
+        <Button label={buyLabel} variant="accent" href={siteConfig.buyUrl} full />
       </div>
-      <div class="action-wrap hidden-mobile">
-        <Button label={buyLabel} variant="accent" href={siteConfig.buyUrl} />
-      </div>
-      <button type="button" class="menu-mobile hidden-desktop" aria-label="Open navigation menu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path></svg>
-      </button>
-    </div>
+    </aside>
   </div>
 </ethan-header>
 
 
 <style>
-  ethan-header{
-    background: #fff;
+  ethan-header {
     position: sticky;
     top: 0;
     z-index: 999;
-    box-shadow: 0px 0 20px 0px rgba(0,0,0,0.1);
   }
-  
-  .header-inner{
+
+  .header-bar {
+    background: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
     gap: 1rem;
-    align-self: center;
     align-items: center;
-    align-content: center;
     padding-block: 12px;
-    @media (width < 992px){
+
+    @media (width < 992px) {
       grid-template-columns: 1fr auto;
-      .menu-mobile{
-        width: fit-content;
-        display: inline-flex;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        color: var(--text);
-        cursor: pointer;
-      }
     }
   }
-  .nav-list{
+
+  .nav-list {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 40px;
   }
-  ul,ol{
+
+  ul,
+  ol {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-  .nav-item a{
+
+  .nav-item a,
+  .nav-drawer-link {
     font-weight: 500;
     text-decoration: none;
     color: var(--text);
-    transition: color .3s ease;
-    &:hover{
+    transition: color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
       color: var(--accent-color);
     }
   }
-  .nav-item.is-active a{
+
+  .nav-item.is-active a,
+  .nav-drawer-item.is-active .nav-drawer-link {
     color: var(--accent-color);
   }
-  
+
+  .menu-mobile {
+    position: relative;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius, 8px);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+
+    svg {
+      position: absolute;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .icon-menu {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+
+    .icon-close {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.85);
+    }
+  }
+
+  @media (width < 992px) {
+    .menu-mobile {
+      display: inline-flex;
+    }
+  }
+
+  ethan-header.is-drawer-open .menu-mobile .icon-menu {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.85);
+  }
+
+  ethan-header.is-drawer-open .menu-mobile .icon-close {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Drawer */
+  .nav-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .nav-drawer[hidden] {
+    display: none;
+  }
+
+  .nav-drawer-overlay {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: rgba(12, 10, 9, 0.45);
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.35s ease;
+  }
+
+  .nav-drawer-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: min(320px, 88vw);
+    max-width: 100%;
+    height: 100%;
+    padding: 20px 24px 28px;
+    background: #fff;
+    box-shadow: -8px 0 32px rgba(12, 10, 9, 0.12);
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    outline: none;
+    overflow-y: auto;
+    will-change: transform;
+  }
+
+  ethan-header.is-drawer-closing .nav-drawer-panel {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  ethan-header.is-drawer-closing .nav-drawer-overlay {
+    opacity: 0;
+  }
+
+  ethan-header.is-drawer-closing .nav-drawer-head,
+  ethan-header.is-drawer-closing .nav-drawer-item,
+  ethan-header.is-drawer-closing .nav-drawer-action {
+    opacity: 0;
+    transform: translate3d(16px, 0, 0);
+    transition-delay: 0s;
+    transition-duration: 0.2s;
+  }
+
+  ethan-header.is-drawer-open .nav-drawer {
+    pointer-events: auto;
+  }
+
+  ethan-header.is-drawer-open .nav-drawer-overlay {
+    opacity: 1;
+  }
+
+  ethan-header.is-drawer-open .nav-drawer-panel {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .nav-drawer-head,
+  .nav-drawer-item,
+  .nav-drawer-action {
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+    transition:
+      opacity 0.35s ease,
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ethan-header.is-drawer-open .nav-drawer-head {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0.12s;
+  }
+
+  ethan-header.is-drawer-open .nav-drawer-item {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  ethan-header.is-drawer-open .nav-drawer-item:nth-child(1) { transition-delay: 0.16s; }
+  ethan-header.is-drawer-open .nav-drawer-item:nth-child(2) { transition-delay: 0.2s; }
+  ethan-header.is-drawer-open .nav-drawer-item:nth-child(3) { transition-delay: 0.24s; }
+  ethan-header.is-drawer-open .nav-drawer-item:nth-child(4) { transition-delay: 0.28s; }
+  ethan-header.is-drawer-open .nav-drawer-item:nth-child(5) { transition-delay: 0.32s; }
+
+  ethan-header.is-drawer-open .nav-drawer-action {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0.36s;
+  }
+
+  .nav-drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .nav-drawer-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius, 8px);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+  }
+
+  .nav-drawer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-drawer-link {
+    display: block;
+    padding: 14px 0;
+    font-size: 18px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-drawer-action {
+    margin-top: auto;
+    padding-top: 28px;
+  }
+
+  .nav-drawer-action :global(.btn) {
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-mobile svg,
+    .nav-drawer-overlay,
+    .nav-drawer-panel,
+    .nav-drawer-head,
+    .nav-drawer-item,
+    .nav-drawer-action {
+      transition: none;
+      transform: none;
+      opacity: 1;
+    }
+  }
 </style>
