@@ -15,10 +15,10 @@ export const siteConfig = {
   priceSale: 0,
   moneyPrefix: "$",
   buyUrl: "#",
-  openStoreUrl: "#",
+  openStoreUrl: "https://shopify.pxf.io/21gPVO",
   claimDealUrl: "#",
   submitYourWebsiteUrl: "#",
-  liveDemoUrl: "#",
+  liveDemoUrl: "https://basel-v4.myshopify.com/",
 
   // layout/theme
   containerWidth: "1350px",
