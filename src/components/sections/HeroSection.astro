@@ -55,7 +55,7 @@ const sectionSettings = {
           </div>
           <div class="hero-card card-sales cml text-min float-animation">
             <div class="hero-card-inner">
-              <ethan-counter class="count" value={4500} suffix="+" format="locale" duration="2200"></ethan-counter>
+              <div class="count">4500+</div>
               <p>Sales</p>            
             </div>
           </div>
@@ -88,13 +88,13 @@ const sectionSettings = {
           </div>
           <div class="hero-card card-version cml float-animation">
             <div class="hero-card-inner">
-              <ethan-counter class="count" value={40} suffix="+"></ethan-counter>
+              <div class="count">40+</div>
               <p>Versions Included</p>            
             </div>
           </div>
           <div class="hero-card card-sp text-min float-animation">
             <div class="hero-card-inner">
-              <ethan-counter class="count" value={24} suffix="/7" duration="1200"></ethan-counter>
+              <div class="count">24/7</div>
               <p>Support</p>            
             </div>
           </div>
@@ -170,6 +170,7 @@ const sectionSettings = {
       font-weight: 400;
       letter-spacing: -1.92px;
       color: var(--count-text);
+      font-variant-numeric: tabular-nums;
     }
     &.card-sp{
       --count-text: #E48857;
@@ -217,6 +218,11 @@ const sectionSettings = {
         min-height: 110px;
       }
     }
+  }
+  .content-actions{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
   }
   @media (767px < width < 992px){
     .reng-lef{
