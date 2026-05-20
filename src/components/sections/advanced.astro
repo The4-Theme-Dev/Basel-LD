@@ -4,15 +4,17 @@ import Spacer from "../common/Spacer.astro"
 import Heading from "../common/Heading.astro"
 import { siteConfig } from "../../config/site"
 
-import img from '../../assets/images/demos/home_car.png'
-import img2 from '../../assets/images/demos/home_cosmetic.png'
-import img3 from '../../assets/images/demos/home_wine.png'
-import img4 from '../../assets/images/demos/home_dark_verison.png'
-import img5 from '../../assets/images/demos/home_flat_fullwidth.png'
-import img6 from '../../assets/images/demos/home_new_fashion.png'
 import ImageRender from "../common/ImageRender.astro"
 import AccordionGroup from "../common/AccordionGroup.astro"
 import Accordion from "../common/Accordion.astro"
+
+// import video
+import ajaxsearch from '../../assets/videos/ajaxsearch.mp4'
+import ajaxshop from '../../assets/videos/ajaxshop.mp4'
+import quickadd from '../../assets/videos/quickadd.mp4'
+import quickview from '../../assets/videos/quickview.mp4'
+import stickyatc from '../../assets/videos/stickyatc.mp4'
+import swatches from '../../assets/videos/swatches.mp4'
 
 const sectionId = `advanced-${crypto.randomUUID().slice(0, 8)}`
 
@@ -25,33 +27,33 @@ const sectionSettings = {
   features: [
     {
       title: "Ajax Search",
-      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
-      image: img
+      sub: `Deliver instant search results with real-time suggestions, helping customers find products faster and reduce drop-offs.`,
+      video: ajaxsearch
     },
     {
       title: "Quick View",
-      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
-      image: img2
+      sub: `Preview products instantly without leaving the page. Let customers explore details, variants, and pricing in a seamless popup experience.`,
+      video: quickview
     },
     {
       title: "Product Swatches",
-      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
-      image: img3
+      sub: `Display product variations with intuitive color, size, and style swatches to help customers choose faster and more confidently.`,
+      video: swatches
     },
     {
       title: "Quick Shop",
-      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
-      image: img4
+      sub: `Enable fast add-to-cart directly from collection pages, reducing steps and boosting conversion rates.`,
+      video: quickadd
     },
     {
       title: "Ajax Shop",
-      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
-      image: img5
+      sub: `Deliver a smooth shopping experience with dynamic cart updates, filters, and interactions—no page reloads needed.`,
+      video: ajaxshop
     },
     {
-      title: "Categories Menu",
-      sub: `Help customers find exactly what they’re looking for in seconds with real-time search suggestions, product previews, and smart results.`,
-      image: img6
+      title: "Sticky Add to Cart",
+      sub: `Keep the add-to-cart button always visible while scrolling, ensuring customers can purchase anytime without friction.`,
+      video: stickyatc
     },
   ]
 }
@@ -76,7 +78,7 @@ const sectionSettings = {
           <div class="item-inner">
             <div class="left">
               <div class="wrap-content">
-                <AccordionGroup ariaControls={`${sectionId}-content`} interval={5000}>
+                <AccordionGroup ariaControls={`${sectionId}-content`} interval={10000}>
                   {sectionSettings.features.map((item,index) => (
                     <Accordion open={index === 0} attributes={{ 'data-index': String(index) }}>
                       <h3 slot="title">{item.title}</h3>
@@ -92,7 +94,7 @@ const sectionSettings = {
               <div id={`${sectionId}-content`} class="accordion-wrap">
                 {sectionSettings.features.map((item,index) => (
                   <div class:list={['content-item', { 'is-active': index === 0 }]}>
-                    <ImageRender src={item.image} alt={item.title} ratio="square" loading="eager" />
+                    <video src={item.video} autoplay muted loop playsinline preload="metadata"></video>
                   </div>
                 ))}
               </div>
@@ -149,6 +151,9 @@ const sectionSettings = {
     img{
       object-fit: cover;
       object-position: top;
+    }
+    video{
+      width: 100%;
     }
   }
 
