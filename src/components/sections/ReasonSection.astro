@@ -47,11 +47,13 @@ const sectionSettings = {
       </div>
       <div class="reason-list" data-gsap-stagger="0.12">
         {reasons.map(({title, description, Icon}) => (
-          <div class="reason-item">
-            <Icon />
-            <h3 class="reason-item-title">{title}</h3>
-            <p class="reason-item-description text-secondary hide-br-mobile" set:html={description}></p>
-          </div>
+          <ethan-tilt-card max-tilt="9" smooth="0.15">
+            <div class="reason-item">
+              <Icon />
+              <h3 class="reason-item-title">{title}</h3>
+              <p class="reason-item-description text-secondary hide-br-mobile" set:html={description}></p>
+            </div>
+          </ethan-tilt-card>
         ))}
       </div>
     </div>

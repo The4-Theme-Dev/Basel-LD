@@ -333,3 +333,12 @@ ethan-backtop .backtop-btn svg {
     height: 44px;
   }
 }
+
+ethan-tilt-card {
+  display: block;
+  height: 100%;
+  perspective: 520px;
+  perspective-origin: 50% 45%;
+  -webkit-perspective: 520px;
+  -webkit-perspective-origin: 50% 45%;
+}
