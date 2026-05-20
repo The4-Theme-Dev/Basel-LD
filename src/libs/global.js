@@ -355,11 +355,16 @@ if (!customElements.get("ethan-lazy-video")) {
         this.reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const threshold = Number(this.dataset.threshold || "0.25");
+        const playbackRate = Number(this.dataset.playbackRate || "1");
+        this.playbackRate = Number.isFinite(playbackRate)
+          ? Math.min(2, Math.max(0.25, playbackRate))
+          : 1;
 
         if (this.reduceMotion) {
           this.video.removeAttribute("autoplay");
           return;
         }
+        this.video.playbackRate = this.playbackRate;
         if(this.video.hasAttribute('autoplay')){
           this.#safeVideo(true);
         }

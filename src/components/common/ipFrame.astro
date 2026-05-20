@@ -5,8 +5,9 @@ interface Props {
   src?: string;
   title?: string;
   poster?: string;
+  playbackRate?: number;
 }
-const { src, title, poster } = Astro.props;
+const { src, title, poster, playbackRate = 0.7 } = Astro.props;
 ---
 
 <div class="ipframe ratio-2-1">
@@ -20,7 +21,7 @@ const { src, title, poster } = Astro.props;
         <div class="fr-vl-down"></div>
       </div>
       <div class="fr-body">
-        <ethan-lazy-video data-threshold="0.25" class="ratio">
+        <ethan-lazy-video data-threshold="0.25" data-playback-rate={playbackRate} class="ratio">
           <video
             muted
             playsinline
