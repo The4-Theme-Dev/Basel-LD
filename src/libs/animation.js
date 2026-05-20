@@ -160,3 +160,108 @@ function resetMotionTargets() {
     }
   );
 }
+
+if (!customElements.get("ethan-tilt-card")) {
+  customElements.define(
+    "ethan-tilt-card",
+    class EthanTiltCard extends HTMLElement {
+      connectedCallback() {
+        if (this._inited) return;
+        this._inited = true;
+
+        this._surface = this.firstElementChild;
+        if (!this._surface) return;
+
+        this._reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        const noHover = window.matchMedia("(hover: none)").matches;
+        if (this._reduceMotion || noHover) return;
+
+        this._maxTilt = Number(this.getAttribute("max-tilt") ?? 10);
+        this._smooth = Number(this.getAttribute("smooth") ?? 0.14);
+        this._maxLift = Number(this.getAttribute("max-lift") ?? 16);
+
+        this._currentRx = 0;
+        this._currentRy = 0;
+        this._targetRx = 0;
+        this._targetRy = 0;
+        this._raf = null;
+
+        this._onEnter = () => {
+          this.classList.add("is-tilt-active");
+        };
+        this._onLeave = () => {
+          this.classList.remove("is-tilt-active");
+          this._targetRx = 0;
+          this._targetRy = 0;
+          this.#scheduleTick();
+        };
+        this._onMove = (e) => {
+          const rect = this.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const nx = (e.clientX - cx) / Math.max(rect.width / 2, 1);
+          const ny = (e.clientY - cy) / Math.max(rect.height / 2, 1);
+          this._targetRy = Math.max(-1, Math.min(1, nx)) * this._maxTilt;
+          this._targetRx =
+            -Math.max(-1, Math.min(1, ny)) * this._maxTilt;
+          this.#scheduleTick();
+        };
+
+        this.addEventListener("pointerenter", this._onEnter);
+        this.addEventListener("pointerleave", this._onLeave);
+        this.addEventListener("pointermove", this._onMove);
+      }
+
+      disconnectedCallback() {
+        this.removeEventListener("pointerenter", this._onEnter);
+        this.removeEventListener("pointerleave", this._onLeave);
+        this.removeEventListener("pointermove", this._onMove);
+        if (this._raf) {
+          cancelAnimationFrame(this._raf);
+          this._raf = null;
+        }
+        if (this._surface) {
+          this._surface.style.transform = "";
+        }
+      }
+
+      #scheduleTick() {
+        if (this._raf != null) return;
+        const tick = () => {
+          this._currentRx +=
+            (this._targetRx - this._currentRx) * this._smooth;
+          this._currentRy +=
+            (this._targetRy - this._currentRy) * this._smooth;
+
+          const dx = this._targetRx - this._currentRx;
+          const dy = this._targetRy - this._currentRy;
+
+          if (this._surface) {
+            const tilt = Math.hypot(this._currentRx, this._currentRy);
+            const z = Math.min(
+              this._maxLift,
+              (tilt / Math.max(this._maxTilt, 1)) * this._maxLift
+            );
+            this._surface.style.transform = `rotateX(${this._currentRx.toFixed(3)}deg) rotateY(${this._currentRy.toFixed(3)}deg) translateZ(${z.toFixed(2)}px)`;
+          }
+
+          const moving = Math.abs(dx) > 0.02 || Math.abs(dy) > 0.02;
+
+          if (moving) {
+            this._raf = requestAnimationFrame(tick);
+          } else {
+            if (this._surface) {
+              this._surface.style.transform = "";
+            }
+            this._currentRx = 0;
+            this._currentRy = 0;
+            this._raf = null;
+          }
+        };
+        this._raf = requestAnimationFrame(tick);
+      }
+    }
+  );
+}
