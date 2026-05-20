@@ -209,17 +209,20 @@ const sectionSettings = {
       .content{
         grid-column: span 2;
       }
-      .reng-lef{
-        order: 2;
-        .hero-card:last-child{
-          grid-column: 2;
-        }
-      }
+      
       .reng-lef2{
         order: 3;
       }
       .hero-card{
         min-height: 110px;
+      }
+    }
+  }
+  @media (767px < width < 992px){
+    .reng-lef{
+      order: 2;
+      .hero-card:last-child{
+        grid-column: 2;
       }
     }
   }
@@ -254,6 +257,9 @@ const sectionSettings = {
       .hero-card{
         min-height: 120px;
       }
+    }
+    .reng-lef{
+      order: 2;
     }
   }
 </style>
