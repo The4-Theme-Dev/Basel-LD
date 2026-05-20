@@ -79,16 +79,47 @@ const gsapAttrs = reveal
     border: none;
     border-radius: var(--btn-radius);
     cursor: pointer;
-    transition: opacity .3s ease, color .3s ease, background-color .3s ease;
+    transition:
+      transform .22s ease,
+      box-shadow .25s ease,
+      opacity .2s ease,
+      color .25s ease,
+      background-color .25s ease,
+      letter-spacing .22s ease;
     text-decoration: none;
     z-index: 1;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 
-    &:hover{
-      opacity: 0.8;
+    &::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.24) 50%, transparent 65%);
+      transform: translateX(-120%);
+      transition: transform .45s ease;
+      pointer-events: none;
+      z-index: 0;
     }
-    &:active{
-      opacity: 0.6;
+
+    & > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    &:hover:not(:disabled):not(.is-disabled){
+      opacity: 1;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+      letter-spacing: calc(var(--btn-fs) * ((var(--btn-ls) - 0.6) / 100));
+      &::after{
+        transform: translateX(120%);
+      }
+    }
+    &:active:not(:disabled):not(.is-disabled){
+      transform: translateY(0);
+      opacity: 0.92;
     }
     &:focus-visible {
       outline: 2px solid var(--accent-color);
@@ -114,6 +145,10 @@ const gsapAttrs = reveal
   .btn--accent{
     --btn-bg: var(--btn-bg-accent);
     --btn-text: var(--btn-text-accent);
+
+    &:hover:not(:disabled):not(.is-disabled){
+      box-shadow: 0 10px 26px rgba(202, 138, 4, 0.28);
+    }
   }
   .btn--transparent{
     --btn-bg: var(--btn-bg-transparent);
