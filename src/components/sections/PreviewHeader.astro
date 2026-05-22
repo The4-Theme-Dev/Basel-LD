@@ -44,7 +44,7 @@ const sizes = `(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 50vw`;
           <Spacer space={24} spaceTb={20} spaceMb={18} />
           <p class="text-secondary hide-br-mobile" set:html={sectionSettings.sub}></p>
           <Spacer space={48} spaceTb={36} spaceMb={30} />
-          <Button label="View Demos" variant="accent" href={siteConfig.liveDemoUrl} />
+          <Button label="View Demos" variant="accent" href={siteConfig.liveDemoUrl} attributes={{ "open-password-popup": "" }} />
           <Spacer space={14} spaceTb={0} spaceMb={0} />
         </div>
         <div class="preview-header-right">

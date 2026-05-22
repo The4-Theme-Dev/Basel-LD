@@ -12,6 +12,7 @@ interface Props {
   revealY?: number;
   revealDuration?: number;
   revealStart?: string;
+  attributes?: Record<string, string>;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   revealY = 20,
   revealDuration = 0.65,
   revealStart,
+  attributes = {},
 } = Astro.props;
 
 const className = [
@@ -52,12 +54,12 @@ const gsapAttrs = reveal
 {
   href ? (
     disabled ? (
-      <span class={className} aria-disabled="true" aria-label={ariaLabel} {...gsapAttrs}>{label}</span>
+      <span class={className} aria-disabled="true" aria-label={ariaLabel} {...gsapAttrs} {...attributes}>{label}</span>
     ) : (
-      <a href={href} class={className} aria-label={ariaLabel} {...gsapAttrs} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} target="_blank">{label}</a>
+      <a href={href} class={className} aria-label={ariaLabel} {...gsapAttrs} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} target="_blank" {...attributes}>{label}</a>
     )
   ) : (
-    <button type={type} class={className} disabled={disabled} aria-label={ariaLabel} {...gsapAttrs}>
+    <button type={type} class={className} disabled={disabled} aria-label={ariaLabel} {...gsapAttrs} {...attributes}>
       {label}
     </button>
   )

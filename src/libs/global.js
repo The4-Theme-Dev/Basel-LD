@@ -403,3 +403,94 @@ if (!customElements.get("ethan-lazy-video")) {
     }
   );
 }
+
+// password popup — document.dispatchEvent(new CustomEvent('pp:password:open', { detail: { href: '...' } }))
+if (!customElements.get("password-popup")) {
+  customElements.define(
+    "password-popup",
+    class PasswordPopup extends HTMLElement {
+      connectedCallback() {
+        if (this._inited) return;
+        this._inited = true;
+
+        this._overlay = this.querySelector(".overlay");
+        this._closeBtn = this.querySelector(".pp-close");
+        this._btnLink = this.querySelector('[url-accepted]');
+
+        document.addEventListener("pp:password:open", this._onOpen);
+        document.addEventListener("pp:password:close", this._onClose);
+        this._overlay?.addEventListener("click", this._onClose);
+        this._closeBtn?.addEventListener("click", this._onClose);
+      }
+
+      disconnectedCallback() {
+        document.removeEventListener("pp:password:open", this._onOpen);
+        document.removeEventListener("pp:password:close", this._onClose);
+        this._overlay?.removeEventListener("click", this._onClose);
+        this._closeBtn?.removeEventListener("click", this._onClose);
+        if (this.open) this.#syncLenis(false);
+      }
+
+      get open() {
+        return this.hasAttribute("open");
+      }
+
+      set open(value) {
+        const next = Boolean(value);
+        if (next === this.open) return;
+
+        this.toggleAttribute("open", next);
+        this.#syncLenis(next);
+      }
+
+      get opened(){
+        return sessionStorage.getItem('password-popup-opened') || false;
+      }
+
+      #syncLenis(locked) {
+        document.body.classList.toggle("is-password-popup-open", locked);
+        if (locked) {
+          window.__lenis?.stop?.();
+        } else {
+          window.__lenis?.start?.();
+        }
+      }
+
+      _onOpen = (e) => {
+        const { href, label } = e.detail ?? {};
+        const demoLink = this._btnLink;
+        
+        if (href && demoLink) demoLink.href = href;
+        if (label && demoLink) demoLink.textContent = label;
+        
+        if (this.opened && href) {
+          window.open(href, "_blank", "noopener,noreferrer");
+          return;
+        }
+        sessionStorage.setItem('password-popup-opened', 'true');
+        this.open = true;
+      };
+
+      _onClose = () => {
+        this.open = false;
+        if(this._btnLink) this._btnLink.setAttribute('href', '#');
+      };
+    }
+  );
+}
+
+
+(() => {
+  let passwordPopups = document.querySelectorAll("[open-password-popup]");
+  console.log(passwordPopups);
+  
+  passwordPopups.forEach(popup => {
+    popup.addEventListener("click", (e) => {
+      e.preventDefault();
+      let href = popup.getAttribute("href");
+      console.log(href);
+      
+      document.dispatchEvent(new CustomEvent("pp:password:open", { detail: { href, href } }));
+    });
+  });
+})();
