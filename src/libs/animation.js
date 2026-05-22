@@ -253,7 +253,7 @@ if (!customElements.get("ethan-tilt-card")) {
             this._raf = requestAnimationFrame(tick);
           } else {
             if (this._surface) {
-              this._surface.style.transform = "";
+              // this._surface.style.transform = "";
             }
             this._currentRx = 0;
             this._currentRy = 0;
