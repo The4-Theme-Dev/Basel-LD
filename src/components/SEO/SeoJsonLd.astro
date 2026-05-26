@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../../config/site";
+import { assetUrl } from "../../config/assets";
 import { defaultSeo, buildPageUrl } from "../../config/seo";
 
 interface Props {
@@ -14,7 +15,7 @@ const organizationLd = {
   "@type": "Organization",
   name: siteConfig.author,
   url: siteConfig.siteUrl,
-  logo: new URL("/logo.png", siteConfig.siteUrl).toString(),
+  logo: assetUrl("logo.png"),
   description: description ?? defaultSeo.description,
 };
 

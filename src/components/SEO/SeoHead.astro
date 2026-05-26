@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from "../../config/site";
+import { assetPath } from "../../config/assets";
 import { defaultSeo, buildPageUrl } from "../../config/seo";
 import FontEmbed from "./FontEmbed.astro";
 
@@ -21,7 +22,7 @@ const seo = {
 const pageUrl = buildPageUrl(path);
 ---
 
-<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href={assetPath("favicon.svg")} type="image/svg+xml" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{seo.title}</title>

@@ -1,6 +1,9 @@
 ---
 import { siteConfig } from "../../config/site";
+import { assetPath } from "../../config/assets";
 import Button from "../common/Button.astro";
+
+const base = import.meta.env.BASE_URL;
 const menu = [
   {
     label: "Demos",
@@ -37,8 +40,8 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
     <div class="container">
       <div class="header-inner">
         <div class="logo-wrap">
-          <a href="/" class="header-logo flex" aria-label="Basel home">
-            <img src="/logo.svg" alt="Basel — Shopify Themes Premium" width="150" height="50" />
+          <a href={base} class="header-logo flex" aria-label="Basel home">
+            <img src={assetPath("logo.svg")} alt="Basel — Shopify Themes Premium" width="150" height="50" />
           </a>
         </div>
         <nav class="nav-wrap hidden-mobile" aria-label="Main navigation">
@@ -75,8 +78,8 @@ const buyLabel = `Buy Now - ${siteConfig.moneyPrefix}${siteConfig.originPrice}`;
     <button type="button" class="nav-drawer-overlay" data-drawer-close aria-label="Close navigation menu"></button>
     <aside class="nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation menu" tabindex="-1">
       <div class="nav-drawer-head">
-        <a href="/" class="header-logo" aria-label="Basel home">
-          <img src="/logo.svg" alt="Basel — Shopify Themes Premium" width="120" height="32" />
+        <a href={base} class="header-logo" aria-label="Basel home">
+          <img src={assetPath("logo.svg")} alt="Basel — Shopify Themes Premium" width="120" height="32" />
         </a>
         <button type="button" class="nav-drawer-close" data-drawer-close aria-label="Close navigation menu">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">

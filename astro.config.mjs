@@ -7,5 +7,5 @@ const site = import.meta.env.PUBLIC_SITE_URL || 'https://themes.the4.co/basel-1'
 // https://astro.build/config
 export default defineConfig({
   site,
-  base: '/basel-1'
+  base: '/basel-1/',
 });
