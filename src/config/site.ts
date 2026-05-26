@@ -2,7 +2,7 @@
 const siteUrl =
   import.meta.env.SITE ||
   import.meta.env.PUBLIC_SITE_URL ||
-  "https://basel.luxuchi.com";
+  "https://themes.the4.co/basel-1";
 
 export const siteConfig = {
   siteUrl,
