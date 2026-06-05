@@ -326,7 +326,7 @@ ethan-backtop .backtop-btn svg {
 @media (width < 767px) {
   ethan-backtop {
     right: 14px;
-    bottom: 18px;
+    bottom: 80px;
   }
 
   ethan-backtop .backtop-btn {

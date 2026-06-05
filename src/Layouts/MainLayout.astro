@@ -4,6 +4,7 @@ import "../style/global.css";
 import SeoHead from "../components/SEO/SeoHead.astro";
 import SeoJsonLd from "../components/SEO/SeoJsonLd.astro";
 import Header from "../components/Header/Header.astro";
+import ScriptInject from "../components/system/scriptInject.astro";
 
 import CssVariables from "../components/SEO/css-variables.astro";
 import Footer from "../components/Footer/Footer.astro";
@@ -29,6 +30,7 @@ const { title, description, image, path = "/", lang = "en" } = Astro.props;
     <Header />
     <slot />
     <Footer />
+    <ScriptInject />
     <ethan-backtop threshold="480">
       <button type="button" class="backtop-btn" aria-label="Back to top" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true" focusable="false">

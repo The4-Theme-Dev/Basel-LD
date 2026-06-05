@@ -14,10 +14,10 @@ export const siteConfig = {
   originPrice: 59,
   priceSale: 0,
   moneyPrefix: "$",
-  buyUrl: "#",
+  buyUrl: "https://themeforest.net/item/basel-co-multipurpose-shopify-theme-os20/63602201",
   openStoreUrl: "https://shopify.pxf.io/21gPVO",
   claimDealUrl: "#",
-  submitYourWebsiteUrl: "#",
+  submitYourWebsiteUrl: "https://the4.co/pages/contact-us",
   liveDemoUrl: "https://basel-v4.myshopify.com/",
 
   // layout/theme
