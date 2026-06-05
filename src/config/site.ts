@@ -14,7 +14,7 @@ export const siteConfig = {
   originPrice: 59,
   priceSale: 0,
   moneyPrefix: "$",
-  buyUrl: "https://themeforest.net/item/basel-co-multipurpose-shopify-theme-os20/63602201",
+  buyUrl: "https://1.envato.market/VOB933",
   openStoreUrl: "https://shopify.pxf.io/21gPVO",
   claimDealUrl: "#",
   submitYourWebsiteUrl: "https://the4.co/pages/contact-us",
