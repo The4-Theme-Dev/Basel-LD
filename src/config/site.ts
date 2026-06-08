@@ -11,8 +11,8 @@ export const siteConfig = {
   locale: "en_US",
   themeColor: "#ffffff",
   // Money & store
-  originPrice: 59,
-  priceSale: 0,
+  originPrice: 39,
+  priceSale: 59,
   moneyPrefix: "$",
   buyUrl: "https://1.envato.market/VOB933",
   openStoreUrl: "https://shopify.pxf.io/21gPVO",
